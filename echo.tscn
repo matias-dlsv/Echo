@@ -421,4 +421,5 @@ script = ExtResource("1_0twx3")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1909592222]
 position = Vector2(1, -4)
 sprite_frames = SubResource("SpriteFrames_maugy")
-animation = &"run_left"
+animation = &"dying"
+frame_progress = 0.7380811
