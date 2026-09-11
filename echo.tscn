@@ -1,23 +1,6 @@
 [gd_scene format=3 uid="uid://dbani6gs02st0"]
 
-[ext_resource type="Script" uid="uid://be6qry1maj3dt" path="res://scripts/player.gd" id="1_0twx3"]
 [ext_resource type="Texture2D" uid="uid://divrdlukrgkn6" path="res://Cute_Fantasy_Free/Cute_Fantasy_Free/Player/Player.png" id="1_yymxn"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yymxn"]
-atlas = ExtResource("1_yymxn")
-region = Rect2(96, 288, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tbe5n"]
-atlas = ExtResource("1_yymxn")
-region = Rect2(64, 288, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jxvts"]
-atlas = ExtResource("1_yymxn")
-region = Rect2(32, 288, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_leh1t"]
-atlas = ExtResource("1_yymxn")
-region = Rect2(0, 288, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lc4py"]
 atlas = ExtResource("1_yymxn")
@@ -211,25 +194,24 @@ region = Rect2(128, 160, 32, 32)
 atlas = ExtResource("1_yymxn")
 region = Rect2(96, 160, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_yymxn"]
+atlas = ExtResource("1_yymxn")
+region = Rect2(96, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbe5n"]
+atlas = ExtResource("1_yymxn")
+region = Rect2(64, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxvts"]
+atlas = ExtResource("1_yymxn")
+region = Rect2(32, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_leh1t"]
+atlas = ExtResource("1_yymxn")
+region = Rect2(0, 288, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_maugy"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yymxn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tbe5n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jxvts")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_leh1t")
-}],
-"loop": 1,
-"name": &"dying",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lc4py")
@@ -413,13 +395,28 @@ animations = [{
 "loop": 1,
 "name": &"run_up",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yymxn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbe5n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxvts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_leh1t")
+}],
+"loop": 1,
+"name": &"x_dying",
+"speed": 5.0
 }]
 
 [node name="player" type="CharacterBody2D" unique_id=331733569]
-script = ExtResource("1_0twx3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1909592222]
 position = Vector2(1, -4)
 sprite_frames = SubResource("SpriteFrames_maugy")
-animation = &"dying"
-frame_progress = 0.7380811
+animation = &"idle_left"
