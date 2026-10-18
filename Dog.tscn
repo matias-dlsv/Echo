@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b4sj130cqrw7j"]
+
+[ext_resource type="Script" uid="uid://cqbj8cnoyykfu" path="res://scripts/Dog.cs" id="1_dog"]
+[ext_resource type="AudioStream" uid="uid://bpllrxrhk5mir" path="res://ZOMBIE DOG ROAR SOUND SOUND FX.mp3" id="2_dho21"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dog"]
+size = Vector2(20, 12)
+
+[node name="Dog" type="CharacterBody2D" unique_id=65033551]
+script = ExtResource("1_dog")
+
+[node name="Placeholder" type="Polygon2D" parent="." unique_id=382669088]
+color = Color(0.55, 0.35, 0.2, 1)
+polygon = PackedVector2Array(-10, -6, 10, -6, 10, 6, -10, 6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1128620847]
+shape = SubResource("RectangleShape2D_dog")
+
+[node name="Bark" type="AudioStreamPlayer2D" parent="." unique_id=127242553]
+stream = ExtResource("2_dho21")

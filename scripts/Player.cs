@@ -16,12 +16,25 @@ public partial class Player : CharacterBody2D
 	private int _chargeIndex = 0;
 	private Tween _lightTween;
 
+	// ---- Lo que lee el perro (Dog.cs) ----
+	// Radio aproximado (px globales) donde tu luz realmente alumbra, por cada 1.0 de TextureScale.
+	// Con tu luz actual (escala 1.5, personaje x5) da ~185 px. Ajústalo a ojo si hace falta.
+	[Export] public float LightRadiusPerScale = 123f;
+
+	// true mientras el eco está activo (la luz está más grande que la base)
+	public bool IsEchoActive => _visionLight != null && _visionLight.TextureScale > _baseLightScale * 1.01f;
+
+	// Radio actual de tu luz en px globales (crece con el eco)
+	public float LightRadius => _visionLight == null ? 0f : _visionLight.TextureScale * LightRadiusPerScale;
+
 	public override void _Ready()
 	{
 		_animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		_visionLight = GetNode<PointLight2D>("PointLight2D");
 
 		_baseLightScale = _visionLight.TextureScale;
+
+		AddToGroup("player");
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
@@ -98,5 +111,11 @@ public partial class Player : CharacterBody2D
 		{
 			_animatedSprite2D.Play(prefix + "_down");
 		}
+	}
+
+	// El perro llama a esto cuando te alcanza. Por ahora solo avisa; aquí irá la vida / game over.
+	public void TakeHit()
+	{
+		GD.Print("¡Te golpearon!");
 	}
 }

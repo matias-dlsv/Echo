@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dbani6gs02st0"]
 
 [ext_resource type="Texture2D" uid="uid://divrdlukrgkn6" path="res://Cute_Fantasy_Free/Cute_Fantasy_Free/Player/Player.png" id="1_yymxn"]
+[ext_resource type="Script" uid="uid://cr4taddh3f04u" path="res://scripts/Player.cs" id="2_1bvp3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lc4py"]
 atlas = ExtResource("1_yymxn")
@@ -414,9 +415,49 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_maugy"]
+radius = 6.0
+height = 12.0
+
+[sub_resource type="Gradient" id="Gradient_ig7tw"]
+offsets = PackedFloat32Array(0, 0.61547345)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_maugy"]
+gradient = SubResource("Gradient_ig7tw")
+width = 80
+height = 80
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="player" type="CharacterBody2D" unique_id=331733569]
+script = ExtResource("2_1bvp3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1909592222]
 position = Vector2(1, -4)
 sprite_frames = SubResource("SpriteFrames_maugy")
 animation = &"idle_left"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1415648133]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1153894273]
+position = Vector2(1, -2)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_maugy")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1708542588]
+color = Color(0.9938466, 0.72187304, 0.7202118, 1)
+energy = 3.1
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 1.0
+texture = SubResource("GradientTexture2D_maugy")
+texture_scale = 1.5
+
+[node name="InputController" type="Node" parent="." unique_id=532387843]
+
+[node name="PhysicsController" type="Node" parent="." unique_id=122275155]
+
+[node name="StateController" type="Node" parent="." unique_id=163508439]
+
+[node name="AudioController" type="Node" parent="." unique_id=1967017714]
