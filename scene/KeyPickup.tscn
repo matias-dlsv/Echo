@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dxeylkog3hvit"]
+
+[ext_resource type="Script" uid="uid://tdkmjmxdkjio" path="res://scripts/KeyPickup.cs" id="1_key"]
+[ext_resource type="Texture2D" uid="uid://chc0r5vj46ns4" path="res://tiles/Dungeon_Tileset.png" id="2_284hg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_key"]
+radius = 8.0
+
+[node name="KeyPickup" type="Area2D" unique_id=1127419612]
+scale = Vector2(3, 3)
+script = ExtResource("1_key")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=196055095]
+shape = SubResource("CircleShape2D_key")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1328294459]
+texture = ExtResource("2_284hg")
+region_enabled = true
+region_rect = Rect2(145.6066, 146.98506, 14.393402, 13.014938)

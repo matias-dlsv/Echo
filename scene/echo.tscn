@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dbani6gs02st0"]
 
 [ext_resource type="Texture2D" uid="uid://divrdlukrgkn6" path="res://Cute_Fantasy_Free/Cute_Fantasy_Free/Player/Player.png" id="1_yymxn"]
-[ext_resource type="Script" uid="uid://cr4taddh3f04u" path="res://scripts/Player.cs" id="2_1bvp3"]
+[ext_resource type="Script" uid="uid://yjw6d0mf5nxa" path="res://scripts/Player.cs" id="2_1bvp3"]
+[ext_resource type="AudioStream" uid="uid://djpik10pjfvhq" path="res://sounds/distant-vibrating-sound.mp3" id="3_1ob1v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lc4py"]
 atlas = ExtResource("1_yymxn")
@@ -416,8 +417,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_maugy"]
-radius = 6.0
-height = 12.0
+height = 20.0
 
 [sub_resource type="Gradient" id="Gradient_ig7tw"]
 offsets = PackedFloat32Array(0, 0.61547345)
@@ -431,6 +431,7 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="player" type="CharacterBody2D" unique_id=331733569]
+z_index = 1
 script = ExtResource("2_1bvp3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1909592222]
@@ -461,3 +462,6 @@ texture_scale = 1.5
 [node name="StateController" type="Node" parent="." unique_id=163508439]
 
 [node name="AudioController" type="Node" parent="." unique_id=1967017714]
+
+[node name="EchoSound" type="AudioStreamPlayer2D" parent="AudioController" unique_id=675518689]
+stream = ExtResource("3_1ob1v")

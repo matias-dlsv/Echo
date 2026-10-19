@@ -25,6 +25,7 @@ public partial class Dog : CharacterBody2D
 	private State _state = State.Idle;
 	private Player _player;
 	private float _timer;
+	private Vector2 _startPos;  // dónde empieza, para volver ahí cuando mueres
 
 	private Vector2 _soundPos;    // dónde ocurrió el sonido (donde estabas al detectarte)
 	private Vector2 _jumpDir;
@@ -41,6 +42,9 @@ public partial class Dog : CharacterBody2D
 
 	public override void _Ready()
 	{
+		_startPos = GlobalPosition;
+		AddToGroup("resettable");
+
 		_sprite = GetNodeOrNull<AnimatedSprite2D>("AnimatedSprite2D");
 		_bark = GetNodeOrNull<AudioStreamPlayer2D>("Bark");
 
@@ -72,8 +76,8 @@ public partial class Dog : CharacterBody2D
 		float dist = GlobalPosition.DistanceTo(_player.GlobalPosition);
 
 		bool tooClose = dist <= DetectionRadius;
-		// Si usas el eco y el perro queda dentro de tu luz agrandada, te nota
-		bool caughtInEcho = _player.IsEchoActive && dist <= _player.LightRadius;
+		// Solo el echo ruidoso (el tercero) se oye: si el perro está dentro de su alcance, te nota
+		bool caughtInEcho = _player.IsEchoLoud && dist <= _player.LightRadius;
 
 		if (tooClose || caughtInEcho)
 			StartWindup();
@@ -162,6 +166,15 @@ public partial class Dog : CharacterBody2D
 		Velocity = Vector2.Zero;
 		_timer -= dt;
 		if (_timer <= 0f) _state = State.Idle;
+	}
+
+	// ---------- Reset ----------
+	// Lo llama el Player al morir (grupo "resettable"): vuelve a su sitio y te da unos segundos de gracia
+	public void ResetToDefault()
+	{
+		GlobalPosition = _startPos;
+		_bark?.Stop();
+		EnterLost();
 	}
 
 	// ---------- Utilidades ----------

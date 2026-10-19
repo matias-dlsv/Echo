@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b4sj130cqrw7j"]
+
+[ext_resource type="Script" uid="uid://os35cq23fcb" path="res://scripts/Dog.cs" id="1_dog"]
+[ext_resource type="AudioStream" uid="uid://bpllrxrhk5mir" path="res://sounds/ZOMBIE DOG ROAR SOUND SOUND FX.mp3" id="2_kfgut"]
+[ext_resource type="Texture2D" uid="uid://37lhxadetkc" path="res://sprites/Black-Dog-PNG-Images.png" id="3_n3fkq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f33ti"]
+radius = 26.0
+height = 96.0
+
+[node name="Dog" type="CharacterBody2D" unique_id=65033551]
+script = ExtResource("1_dog")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1128620847]
+position = Vector2(-6, 4)
+shape = SubResource("CapsuleShape2D_f33ti")
+
+[node name="Bark" type="AudioStreamPlayer2D" parent="." unique_id=127242553]
+stream = ExtResource("2_kfgut")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1281386830]
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("3_n3fkq")

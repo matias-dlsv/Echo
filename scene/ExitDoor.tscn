@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://duoopuih5wicf"]
+
+[ext_resource type="Script" uid="uid://b23olkyhta7hf" path="res://scripts/ExitDoor.cs" id="1_exit"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit"]
+size = Vector2(177, 91)
+
+[node name="ExitDoor" type="Area2D" unique_id=709838446]
+script = ExtResource("1_exit")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1784563797]
+shape = SubResource("RectangleShape2D_exit")

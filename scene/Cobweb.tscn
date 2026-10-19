@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://d245bs3rbm8gf"]
+
+[ext_resource type="Script" uid="uid://c4iqsnjtu8j8q" path="res://scripts/Cobweb.cs" id="1_web"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_web"]
+radius = 33.0
+
+[node name="Cobweb" type="Area2D" unique_id=8426911]
+script = ExtResource("1_web")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1944197739]
+shape = SubResource("CircleShape2D_web")
