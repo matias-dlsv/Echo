@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dxeylkog3hvit" path="res://scene/KeyPickup.tscn" id="7_p1hux"]
 [ext_resource type="PackedScene" uid="uid://duoopuih5wicf" path="res://scene/ExitDoor.tscn" id="8_of57s"]
 [ext_resource type="PackedScene" uid="uid://d245bs3rbm8gf" path="res://scene/Cobweb.tscn" id="9_b5f6u"]
+[ext_resource type="Script" uid="uid://cmvao4ogmrxhx" path="res://scripts/KeyCounter.cs" id="10_tqoya"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_272bh"]
 texture = ExtResource("2_p1hux")
@@ -693,3 +694,15 @@ position = Vector2(1732, -442)
 
 [node name="Cobweb8" parent="." unique_id=844819425 instance=ExtResource("9_b5f6u")]
 position = Vector2(1498, -197)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1020864727]
+
+[node name="KeyCounter" type="Label" parent="HUD" unique_id=1044547691 node_paths=PackedStringArray("Player")]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 228.0
+offset_bottom = 60.551723
+theme_override_font_sizes/font_size = 28
+text = "🔑 Llaves: 0/2"
+script = ExtResource("10_tqoya")
+Player = NodePath("")
