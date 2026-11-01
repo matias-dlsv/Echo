@@ -1,8 +1,13 @@
 [gd_scene format=3 uid="uid://dbani6gs02st0"]
 
 [ext_resource type="Texture2D" uid="uid://divrdlukrgkn6" path="res://Cute_Fantasy_Free/Cute_Fantasy_Free/Player/Player.png" id="1_yymxn"]
-[ext_resource type="Script" uid="uid://yjw6d0mf5nxa" path="res://scripts/Player.cs" id="2_1bvp3"]
-[ext_resource type="AudioStream" uid="uid://djpik10pjfvhq" path="res://sounds/distant-vibrating-sound.mp3" id="3_1ob1v"]
+[ext_resource type="Script" uid="uid://duv3hexi3vi8n" path="res://scripts/Player.cs" id="2_1bvp3"]
+[ext_resource type="Script" uid="uid://dr84t8rww17p7" path="res://scripts/InputController.cs" id="3_tfext"]
+[ext_resource type="Script" uid="uid://31k106scam11" path="res://scripts/EchoController.cs" id="3_thhrd"]
+[ext_resource type="Script" uid="uid://b3u68lf6bnjxu" path="res://scripts/PhysicsController.cs" id="4_thhrd"]
+[ext_resource type="Script" uid="uid://djeqd47mphejf" path="res://scripts/StateController.cs" id="5_mkfsk"]
+[ext_resource type="Script" uid="uid://dpiya1yf8y0n8" path="res://scripts/AudioController.cs" id="6_s17wd"]
+[ext_resource type="AudioStream" uid="uid://lntbik23u8du" path="res://sounds/BIG BELL SOUND EFFECT.mp3" id="8_thhrd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lc4py"]
 atlas = ExtResource("1_yymxn")
@@ -454,14 +459,20 @@ shadow_filter = 2
 shadow_filter_smooth = 1.0
 texture = SubResource("GradientTexture2D_maugy")
 texture_scale = 1.5
+script = ExtResource("3_thhrd")
 
 [node name="InputController" type="Node" parent="." unique_id=532387843]
+script = ExtResource("3_tfext")
 
 [node name="PhysicsController" type="Node" parent="." unique_id=122275155]
+script = ExtResource("4_thhrd")
 
 [node name="StateController" type="Node" parent="." unique_id=163508439]
+script = ExtResource("5_mkfsk")
 
 [node name="AudioController" type="Node" parent="." unique_id=1967017714]
+script = ExtResource("6_s17wd")
 
 [node name="EchoSound" type="AudioStreamPlayer2D" parent="AudioController" unique_id=675518689]
-stream = ExtResource("3_1ob1v")
+stream = ExtResource("8_thhrd")
+pitch_scale = 0.19

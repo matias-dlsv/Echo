@@ -1,191 +1,103 @@
 using Godot;
 
+// Jugador = COORDINADOR. No hace el trabajo: conecta sus componentes (nodos hijos) y expone
+// la API que usan el resto de scripts (perro, puertas, checkpoints, llaves, telarañas).
+//
+//   InputController   -> lee las teclas
+//   PhysicsController -> mueve el cuerpo, lentitud, teletransporte
+//   StateController   -> animaciones, llaves, checkpoint
+//   AudioController   -> sonidos
+//   PointLight2D      -> (script EchoController) poder echo y su luz
 public partial class Player : CharacterBody2D
 {
-	[Export] public float Speed = 300.0f;
+	private InputController _input;
+	private PhysicsController _physics;
+	private StateController _state;
+	private AudioController _audio;
+	private EchoController _echo;
 
-	[Export] public float[] LightBoostMultipliers = { 1.5f, 2.5f, 4.0f };
-	[Export] public float BoostDuration = 1.0f;
-	[Export] public float TransitionTime = 0.15f;
-	[Export] public int LoudEchoIndex = 2;  // cuál echo hace ruido (0 = primero, 2 = tercero)
-
-	private AnimatedSprite2D _animatedSprite2D;
-	private PointLight2D _visionLight;
-	private AudioStreamPlayer _echoSound;
-
-	private Vector2 _lastDirection = Vector2.Right;
-	private float _baseLightScale = 1.0f;
-	private int _chargeIndex = 0;
-	public int EchoCount => _chargeIndex; //Indica cuál será el próximo ECHO
-	private Tween _lightTween;
-	private Vector2 _respawnPosition;
-	private int _slowZones;      // cuántas telarañas te están frenando a la vez
-	private float _slowFactor = 1f;  // 1 = velocidad normal
-
-	// ---- Lo que lee el perro (Dog.cs) ----
-	// Radio aproximado (px globales) donde tu luz realmente alumbra, por cada 1.0 de TextureScale.
-	// Con tu luz actual (escala 1.5, personaje x5) da ~185 px. Ajústalo a ojo si hace falta.
-	[Export] public float LightRadiusPerScale = 123f;
-
-	// true mientras dura un echo que hace ruido (solo el nivel LoudEchoIndex). Solo ese lo oye el perro.
-	public bool IsEchoLoud { get; private set; }
-
-	// Radio actual de tu luz en px globales (crece con el eco)
-	public float LightRadius => _visionLight == null ? 0f : _visionLight.TextureScale * LightRadiusPerScale;
+	// ---- Lo que leen otros scripts ----
+	public bool IsEchoLoud => _echo != null && _echo.IsEchoLoud;
+	public float LightRadius => _echo?.LightRadius ?? 0f;
+	public int KeysCollected => _state?.KeysCollected ?? 0;
 
 	public override void _Ready()
 	{
-		_animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-		_visionLight = GetNode<PointLight2D>("PointLight2D");
-		_echoSound = GetNodeOrNull<AudioStreamPlayer>("AudioController/EchoSound");
+		_input = Find<InputController>("InputController");
+		_physics = Find<PhysicsController>("PhysicsController");
+		_state = Find<StateController>("StateController");
+		_audio = Find<AudioController>("AudioController");
+		_echo = Find<EchoController>("PointLight2D");
 
-		_baseLightScale = _visionLight.TextureScale;
+		if (_input == null || _physics == null || _state == null || _audio == null || _echo == null)
+		{
+			SetPhysicsProcess(false);  // faltan componentes: ya se avisó del error arriba
+			return;
+		}
+
+		_input.EchoPressed += OnEchoPressed;
 
 		AddToGroup("player");
-		_respawnPosition = GlobalPosition;  // el punto de inicio es tu primer checkpoint
-	}
-
-	public override void _UnhandledInput(InputEvent @event)
-	{
-		if (@event.IsActionPressed("vision_boost"))
-		{
-			BoostVision();
-		}
-	}
-
-	private void BoostVision()
-	{
-		if (_lightTween != null && _lightTween.IsValid())
-		{
-			_lightTween.Kill();
-		}
-
-		bool isLoud = _chargeIndex == LoudEchoIndex;
-		IsEchoLoud = isLoud;
-		if (isLoud) _echoSound?.Play();
-
-		float targetScale = _baseLightScale * LightBoostMultipliers[_chargeIndex];
-
-		_lightTween = CreateTween();
-		_lightTween.TweenProperty(_visionLight, "texture_scale", targetScale, TransitionTime);
-		_lightTween.TweenInterval(BoostDuration);
-		_lightTween.TweenProperty(_visionLight, "texture_scale", _baseLightScale, TransitionTime * 2);
-		_lightTween.TweenCallback(Callable.From(() => { IsEchoLoud = false; }));
-
-		_chargeIndex = (_chargeIndex + 1) % LightBoostMultipliers.Length;
+		_state.SetCheckpoint(GlobalPosition);  // el punto de inicio es tu primer checkpoint
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		ProcessMovement();
-		ProcessAnimation(_lastDirection);
-		MoveAndSlide();
+		_physics.SetDirection(_input.Direction);
+		_state.UpdateAnimation(_physics.IsMoving, _physics.LastDirection, _physics.SlowFactor);
+		_physics.Move();
 	}
 
-	private void ProcessMovement()
+	private void OnEchoPressed()
 	{
-		Vector2 direction = Input.GetVector("left", "right", "up", "down");
-
-		if (direction != Vector2.Zero)
-		{
-			Velocity = direction * Speed * _slowFactor;
-			_lastDirection = direction;
-		}
-		else
-		{
-			Velocity = Vector2.Zero;
-		}
+		bool loud = _echo.Activate();
+		if (loud) _audio.PlayEcho();
 	}
 
-	private void ProcessAnimation(Vector2 direction)
-	{
-		_animatedSprite2D.SpeedScale = _slowFactor;
-
-		if (Velocity != Vector2.Zero)
-		{
-			PlayAnimation("run", direction);
-		}
-		else
-		{
-			PlayAnimation("idle", direction);
-		}
-	}
-
-	private void PlayAnimation(string prefix, Vector2 dir)
-	{
-		if (dir.X != 0)
-		{
-			_animatedSprite2D.FlipH = dir.X < 0;
-			_animatedSprite2D.Play(prefix + "_right");
-		}
-		else if (dir.Y < 0)
-		{
-			_animatedSprite2D.Play(prefix + "_up");
-		}
-		else if (dir.Y > 0)
-		{
-			_animatedSprite2D.Play(prefix + "_down");
-		}
-	}
+	// ---- API pública (otros scripts llaman esto) ----
 
 	// El perro (o una trampa) llama a esto cuando te alcanza
-	public void TakeHit()
-	{
-		Die();
-	}
+	public void TakeHit() => Die();
 
-	// Un Checkpoint llama a esto para guardar dónde reapareces
-	public void SetCheckpoint(Vector2 globalPos)
-	{
-		_respawnPosition = globalPos;
-	}
+	// Un Checkpoint guarda dónde reapareces
+	public void SetCheckpoint(Vector2 globalPos) => _state.SetCheckpoint(globalPos);
 
-	// Las llaves recogidas se conservan aunque mueras
-	public int KeysCollected { get; private set; }
+	// Una KeyPickup suma una llave
+	public void AddKey() => _state.AddKey();
 
-	// Una KeyPickup llama a esto al recogerse
-	public void AddKey()
-	{
-		KeysCollected++;
-		GD.Print($"Llaves: {KeysCollected}");
-	}
+	// Una Cobweb te frena mientras estás dentro
+	public void EnterSlow(float factor) => _physics.EnterSlow(factor);
+	public void ExitSlow() => _physics.ExitSlow();
 
-	// Una Cobweb llama a esto al entrar / salir de su zona
-	public void EnterSlow(float factor)
-	{
-		_slowZones++;
-		_slowFactor = factor;
-	}
-
-	public void ExitSlow()
-	{
-		_slowZones = Mathf.Max(0, _slowZones - 1);
-		if (_slowZones == 0) _slowFactor = 1f;
-	}
-
-	// Una Door llama a esto para moverte al otro lado
-	public void TeleportTo(Vector2 globalPos)
-	{
-		GlobalPosition = globalPos;
-		Velocity = Vector2.Zero;
-		GetNodeOrNull<Camera2D>("Camera2D")?.ResetSmoothing();  // que la cámara no "viaje" hasta ahí
-	}
+	// Una Door te mueve al otro lado
+	public void TeleportTo(Vector2 globalPos) => _physics.TeleportTo(globalPos);
 
 	private void Die()
 	{
-		// Reinicia el estado del eco
-		if (_lightTween != null && _lightTween.IsValid())
-		{
-			_lightTween.Kill();
-		}
-		_visionLight.TextureScale = _baseLightScale;
-		_echoSound?.Stop();
-		IsEchoLoud = false;
-		_chargeIndex = 0;
+		_echo.ResetEcho();
+		_audio.StopAll();
 
 		// Todo lo que esté en el grupo "resettable" (enemigos, trampas) vuelve a su estado inicial
 		GetTree().CallGroup("resettable", "ResetToDefault");
 
-		TeleportTo(_respawnPosition);
+		TeleportTo(_state.RespawnPosition);
+	}
+
+	// Busca un componente por nombre y avisa exactamente qué falta
+	private T Find<T>(string path) where T : Node
+	{
+		Node raw = GetNodeOrNull(path);
+
+		if (raw == null)
+		{
+			GD.PushError($"Player: no existe un nodo hijo llamado '{path}'.");
+			return null;
+		}
+		if (raw is not T node)
+		{
+			GD.PushError($"Player: el nodo '{path}' existe, pero le falta asignarle el script {typeof(T).Name}.");
+			return null;
+		}
+		return node;
 	}
 }
