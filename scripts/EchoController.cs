@@ -18,6 +18,7 @@ public partial class EchoController : PointLight2D
 
 	private float _baseScale = 1f;
 	private int _chargeIndex;
+	public int EchoCount => _chargeIndex;
 	private Tween _tween;
 
 	public override void _Ready()

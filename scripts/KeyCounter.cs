@@ -9,6 +9,6 @@ public partial class KeyCounter : Label
 	{
 		if (Player == null) return;
 
-		Text = $"Llaves: {Player.KeysCollected}/{TotalKeys}";
+		Text = $"KEYS: {Player.KeysCollected}/{TotalKeys}";
 	}
 }

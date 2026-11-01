@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://dt1k0xe2n5c4k"]
+[gd_scene format=4 uid="uid://h8l4fx63s3i6"]
 
 [ext_resource type="PackedScene" uid="uid://dbani6gs02st0" path="res://scene/echo.tscn" id="1_yilmc"]
 [ext_resource type="Texture2D" uid="uid://cqsvj0le2sn3i" path="res://tiles/FarmLand_Tile.png" id="2_epjhv"]
@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://dxeylkog3hvit" path="res://scene/KeyPickup.tscn" id="7_xbww7"]
 [ext_resource type="PackedScene" uid="uid://duoopuih5wicf" path="res://scene/ExitDoor.tscn" id="8_l4tox"]
 [ext_resource type="PackedScene" uid="uid://d245bs3rbm8gf" path="res://scene/Cobweb.tscn" id="9_ggcsn"]
-[ext_resource type="Script" uid="uid://cmvao4ogmrxhx" path="res://scripts/KeyCounter.cs" id="10_epjhv"]
+[ext_resource type="FontFile" uid="uid://csh4ji5risjar" path="res://font/PressStart2P-Regular.ttf" id="10_68ptg"]
+[ext_resource type="Script" uid="uid://ctxb028yc5kd2" path="res://scripts/KeyCounter.cs" id="10_epjhv"]
+[ext_resource type="Script" uid="uid://xe5ynmby5bll" path="res://scripts/EchoCounter.cs" id="12_cmtua"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_272bh"]
 texture = ExtResource("2_epjhv")
@@ -535,7 +537,7 @@ tile_set = SubResource("TileSet_bjlfa")
 
 [node name="decoracion" type="TileMapLayer" parent="." unique_id=1407035745]
 scale = Vector2(5, 5)
-tile_map_data = PackedByteArray("AAAJAAQAAAAHAAcAAAADAAIAAAAHAAcAAAAEAAIAAAAHAAcAAAAFAAAAAAACAAkAAAAJAAAAAAACAAkAAAABAAAAAAAFAAYAABAMAAAAAAAFAAYAAAAcAAMAAAAHAAcAAAAcAAEAAAACAAkAAAAYAAEAAAACAAkAAAAHAAMAAAAEAAYAAAALAAcAAAAEAAYAAAAGAPn/AAAEAAYAAAAMAPT/AAAEAAYAABAVAPr/AAAEAAYAABASAP3/AAAEAAYAABAJAAkAAAAEAAYAAAAdAO7/AAAEAAYAAAAbABAAAAAEAAYAAAAaAA0AAAAEAAYAAAAfAAwAAAAEAAYAAAAgAA8AAAAEAAYAAAARAAkAAAAEAAYAAAAGAA0AAAAEAAYAAAABAAwAAAAEAAYAAAAEAAoAAAAEAAYAAAA=")
+tile_map_data = PackedByteArray("AAAJAAQAAAAHAAcAAAADAAIAAAAHAAcAAAAEAAIAAAAHAAcAAAAFAAAAAAACAAkAAAAJAAAAAAACAAkAAAABAAAAAAAFAAYAABAMAAAAAAAFAAYAAAAcAAMAAAAHAAcAAAAcAAEAAAACAAkAAAAYAAEAAAACAAkAAAAHAAMAAAAEAAYAAAALAAcAAAAEAAYAAAAGAPn/AAAEAAYAAAAMAPT/AAAEAAYAABAVAPr/AAAEAAYAABASAP3/AAAEAAYAABAJAAkAAAAEAAYAAAAdAO7/AAAEAAYAAAAbABAAAAAEAAYAAAAaAA0AAAAEAAYAAAAfAAwAAAAEAAYAAAAgAA8AAAAEAAYAAAARAAkAAAAEAAYAAAAGAA0AAAAEAAYAAAABAAwAAAAEAAYAAAAEAAoAAAAEAAYAAAAhAPH/AAAJAAQAAAAkAPH/AAAJAAQAAAAhAO//AAABAAkAAAAkAO7/AAABAAkAABAjAOv/AAACAAkAAAAkAOz/AAAHAAcAAAAZAO7/AAAIAAYAAAAVAPL/AAAIAAYAAAABAPD/AAAIAAYAAAADAO//AAAAAAkAAAACAPD/AAAHAAcAAAABAPb/AAAHAAcAAAABAPT/AAABAAkAAAABAPv/AAABAAkAAAABAPz/AAAIAAYAAAAJAPD/AAAIAAYAAAAMAO//AAAFAAYAAAAVAAgAAAAFAAYAAAAkAAoAAAAFAAYAAAAaAAoAAAAFAAYAABABAO//AAAFAAYAABAVAO//AAAFAAYAABAZAO3/AAAFAAYAABAdAOv/AAAFAAYAABA=")
 tile_set = SubResource("TileSet_maugy")
 occlusion_enabled = false
 
@@ -543,14 +545,14 @@ occlusion_enabled = false
 z_index = 2
 position = Vector2(0, -1)
 scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAAJAAAAAAACAAkAAAABAAAAAAAFAAYAABBHABoAAAAAAAkAAABUABoAAAAAAAkAAAA7AB8AAAAAAAkAAAAtABUAAAAAAAkAAAAmABUAAAAAAAkAAAA=")
+tile_map_data = PackedByteArray("AAAJAAAAAAACAAkAAAABAAAAAAAFAAYAABBHABoAAAAAAAkAAABUABoAAAAAAAkAAAA7AB8AAAAAAAkAAAAtABUAAAAAAAkAAAAmABUAAAAAAAkAAAAfANf/AAAFAAcAAAAfANb/AAAFAAcAAAAeANb/AAAFAAcAAAAeANf/AAAFAAcAAAAZAAEAAAAFAAcAAAAfAPf/AAAIAAYAAAAeAPf/AAAIAAYAAAAfAPb/AAAIAAYAAAAdAPb/AAAIAAYAAAA=")
 tile_set = SubResource("TileSet_maugy")
 occlusion_enabled = false
 
 [node name="terreno2" type="TileMapLayer" parent="." unique_id=149376175]
 z_index = -1
 scale = Vector2(5, 5)
-tile_map_data = PackedByteArray("AAADAAIAAAAHAAcAAAAEAAIAAAAHAAcAAAANAAIAAAAGAAYAAFANAAMAAAAHAAYAAFAGAAAAAAAGAAYAAAAHAAAAAAAHAAYAAAAZAAAAAAAGAAYAAAAaAAAAAAAHAAYAAAANAPH/AAAGAAYAAFANAPL/AAAHAAYAAFAGAAsAAAACAAUAADAFAAoAAAABAAUAAGAFAAsAAAAAAAUAAGAIAAsAAAADAAUAAFAIAAoAAAACAAUAAFAFAAkAAAACAAUAAGAFAAgAAAADAAUAAGAIAAkAAAABAAUAAFAIAAgAAAAAAAUAAFAGAAgAAAACAAQAAAAHAAgAAAADAAQAAAAGAAkAAAAIAAcAAAAHAAkAAAAIAAcAAAAGAAoAAAAIAAcAAAAHAAoAAAAIAAcAAAAHAAsAAAACAAUAADAjAPL/AAAHAAYAAAAiAPL/AAAGAAYAAAAhAPL/AAAEAAUAAFAhAPP/AAAAAAMAAAAkAPL/AAAFAAUAAGAkAPP/AAAFAAMAAAAiAPP/AAAJAAcAAAAjAPP/AAAJAAcAAAAVAAoAAAAHAAYAAAAUAAoAAAAGAAYAAAA=")
+tile_map_data = PackedByteArray("AAADAAIAAAAHAAcAAAAEAAIAAAAHAAcAAAANAAIAAAAGAAYAAFANAAMAAAAHAAYAAFAGAAAAAAAGAAYAAAAHAAAAAAAHAAYAAAAZAAAAAAAGAAYAAAAaAAAAAAAHAAYAAAANAPH/AAAGAAYAAFANAPL/AAAHAAYAAFAGAAsAAAACAAUAADAFAAoAAAABAAUAAGAFAAsAAAAAAAUAAGAIAAsAAAADAAUAAFAIAAoAAAACAAUAAFAFAAkAAAACAAUAAGAFAAgAAAADAAUAAGAIAAkAAAABAAUAAFAIAAgAAAAAAAUAAFAGAAgAAAACAAQAAAAHAAgAAAADAAQAAAAGAAkAAAAIAAcAAAAHAAkAAAAIAAcAAAAGAAoAAAAIAAcAAAAHAAoAAAAIAAcAAAAHAAsAAAACAAUAADAhAPL/AAAEAAUAAFAhAPP/AAAAAAMAAAAkAPL/AAAFAAUAAGAkAPP/AAAFAAMAAAAiAPP/AAAJAAcAAAAjAPP/AAAJAAcAAAAVAAoAAAAHAAYAAAAUAAoAAAAGAAYAAAAiAPL/AAAHAAEAAAAjAPL/AAAIAAEAAAAiAPH/AAAGAAMAAAAjAPH/AAAHAAMAAAA=")
 tile_set = SubResource("TileSet_maugy")
 
 [node name="Dog" parent="." unique_id=743155501 instance=ExtResource("4_68ptg")]
@@ -683,7 +685,7 @@ Destination = NodePath("../Checkpoint6")
 position = Vector2(2.8519497, 51.0085)
 
 [node name="ExitDoor" parent="." unique_id=548455410 instance=ExtResource("8_l4tox")]
-position = Vector2(2797, -1082)
+position = Vector2(2800, -1131)
 RequiredKeys = 3
 NextScene = "res://LevelComplete.tscn"
 
@@ -776,7 +778,19 @@ offset_left = 20.0
 offset_top = 20.0
 offset_right = 228.0
 offset_bottom = 60.551723
-theme_override_font_sizes/font_size = 28
-text = "🔑 Llaves: 0/3"
+theme_override_fonts/font = ExtResource("10_68ptg")
+theme_override_font_sizes/font_size = 25
+text = "KEYS: 0/3"
 script = ExtResource("10_epjhv")
+Player = NodePath("../../CharacterBody2D")
+
+[node name="EchoCounter" type="Label" parent="HUD" unique_id=2072028977 node_paths=PackedStringArray("Player")]
+offset_left = 20.0
+offset_top = 55.0
+offset_right = 272.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("10_68ptg")
+theme_override_font_sizes/font_size = 25
+text = "ECHO: 0/3"
+script = ExtResource("12_cmtua")
 Player = NodePath("../../CharacterBody2D")

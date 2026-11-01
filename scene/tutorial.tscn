@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://cnunt5pfhmyj5"]
+[gd_scene format=4 uid="uid://cxc3wm2d6lhqf"]
 
 [ext_resource type="PackedScene" uid="uid://dbani6gs02st0" path="res://scene/echo.tscn" id="1_qi44v"]
 [ext_resource type="Texture2D" uid="uid://cqsvj0le2sn3i" path="res://tiles/FarmLand_Tile.png" id="2_xftar"]
@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://dxeylkog3hvit" path="res://scene/KeyPickup.tscn" id="7_ui1wm"]
 [ext_resource type="PackedScene" uid="uid://duoopuih5wicf" path="res://scene/ExitDoor.tscn" id="8_l6kb6"]
 [ext_resource type="PackedScene" uid="uid://d245bs3rbm8gf" path="res://scene/Cobweb.tscn" id="9_70st3"]
-[ext_resource type="Script" uid="uid://cmvao4ogmrxhx" path="res://scripts/KeyCounter.cs" id="10_wrfti"]
+[ext_resource type="Script" uid="uid://duu42bgvtm2v2" path="res://scripts/KeyCounter.cs" id="10_wrfti"]
+[ext_resource type="FontFile" uid="uid://csh4ji5risjar" path="res://font/PressStart2P-Regular.ttf" id="11_6iio1"]
+[ext_resource type="Script" uid="uid://xe5ynmby5bll" path="res://scripts/EchoCounter.cs" id="11_xftar"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_272bh"]
 texture = ExtResource("2_xftar")
@@ -524,7 +526,6 @@ position = Vector2(550, 1200)
 scale = Vector2(5, 5)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=820812385]
-visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=907872709]
@@ -576,7 +577,7 @@ position = Vector2(217, 593)
 [node name="ExitDoor" parent="." unique_id=548455410 instance=ExtResource("8_l6kb6")]
 position = Vector2(1050, -280)
 RequiredKeys = 1
-NextScene = "uid://dt1k0xe2n5c4k"
+NextScene = "uid://cn0mdw3ju0ns3"
 
 [node name="Cobweb" parent="." unique_id=8426911 instance=ExtResource("9_70st3")]
 position = Vector2(349, 511)
@@ -586,11 +587,25 @@ position = Vector2(989, 366)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1020864727]
 
-[node name="KeyCounter" type="Label" parent="HUD" unique_id=1044547691]
+[node name="KeyCounter" type="Label" parent="HUD" unique_id=1044547691 node_paths=PackedStringArray("Player")]
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 228.0
 offset_bottom = 60.551723
-theme_override_font_sizes/font_size = 28
-text = "🔑 Llaves: 0/2"
+theme_override_fonts/font = ExtResource("11_6iio1")
+theme_override_font_sizes/font_size = 25
+text = "KEYS: 0/1"
 script = ExtResource("10_wrfti")
+Player = NodePath("../../CharacterBody2D")
+TotalKeys = 1
+
+[node name="EchoCounter" type="Label" parent="HUD" unique_id=239378054 node_paths=PackedStringArray("Player")]
+offset_left = 20.0
+offset_top = 55.0
+offset_right = 272.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("11_6iio1")
+theme_override_font_sizes/font_size = 25
+text = "ECHO: 0/3"
+script = ExtResource("11_xftar")
+Player = NodePath("../../CharacterBody2D")
