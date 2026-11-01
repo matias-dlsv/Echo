@@ -524,7 +524,6 @@ position = Vector2(550, 1200)
 scale = Vector2(5, 5)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=820812385]
-visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=907872709]
@@ -697,7 +696,7 @@ position = Vector2(1498, -197)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1020864727]
 
-[node name="KeyCounter" type="Label" parent="HUD" unique_id=1044547691 node_paths=PackedStringArray("Player")]
+[node name="KeyCounter" type="Label" parent="HUD" unique_id=1044547691]
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 228.0
@@ -705,4 +704,3 @@ offset_bottom = 60.551723
 theme_override_font_sizes/font_size = 28
 text = "🔑 Llaves: 0/2"
 script = ExtResource("10_tqoya")
-Player = NodePath("")
