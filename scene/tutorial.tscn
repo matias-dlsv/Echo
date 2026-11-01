@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dxeylkog3hvit" path="res://scene/KeyPickup.tscn" id="7_ui1wm"]
 [ext_resource type="PackedScene" uid="uid://duoopuih5wicf" path="res://scene/ExitDoor.tscn" id="8_l6kb6"]
 [ext_resource type="PackedScene" uid="uid://d245bs3rbm8gf" path="res://scene/Cobweb.tscn" id="9_70st3"]
-[ext_resource type="Script" path="res://scripts/KeyCounter.cs" id="10_wrfti"]
+[ext_resource type="Script" uid="uid://duu42bgvtm2v2" path="res://scripts/KeyCounter.cs" id="10_wrfti"]
 [ext_resource type="FontFile" uid="uid://csh4ji5risjar" path="res://font/PressStart2P-Regular.ttf" id="11_6iio1"]
 [ext_resource type="Script" uid="uid://xe5ynmby5bll" path="res://scripts/EchoCounter.cs" id="11_xftar"]
 

@@ -15,6 +15,7 @@ public partial class Player : CharacterBody2D
 	private StateController _state;
 	private AudioController _audio;
 	private EchoController _echo;
+	public int EchoCount => _echo?.EchoCount ?? 0;
 
 	// ---- Lo que leen otros scripts ----
 	public bool IsEchoLoud => _echo != null && _echo.IsEchoLoud;

@@ -13,7 +13,7 @@ public partial class EchoCounter : Label
 		Text = $"ECHO: {nextEcho} / 3";
 
 		// El tercer ECHO hace ruido y alerta a los enemigos
-		if (nextEcho == 3)
+		if (nextEcho == 2)
 		{
 			AddThemeColorOverride("font_color", new Color("#FF6B6B"));
 		}
