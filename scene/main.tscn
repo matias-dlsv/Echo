@@ -523,6 +523,7 @@ position = Vector2(550, 1200)
 scale = Vector2(5, 5)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=820812385]
+visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=907872709]
@@ -633,7 +634,7 @@ position = Vector2(-5.2902493, 99.98508)
 
 [node name="ExitDoor" parent="." unique_id=548455410 instance=ExtResource("8_of57s")]
 position = Vector2(562, 926)
-NextScene = "res://LevelComplete.tscn"
+NextScene = "uid://dt1k0xe2n5c4k"
 
 [node name="Dog10" parent="." unique_id=109612920 instance=ExtResource("4_b5f6u")]
 position = Vector2(680, -293)
