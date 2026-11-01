@@ -16,6 +16,7 @@ public partial class Player : CharacterBody2D
 	private Vector2 _lastDirection = Vector2.Right;
 	private float _baseLightScale = 1.0f;
 	private int _chargeIndex = 0;
+	public int EchoCount => _chargeIndex; //Indica cuál será el próximo ECHO
 	private Tween _lightTween;
 	private Vector2 _respawnPosition;
 	private int _slowZones;      // cuántas telarañas te están frenando a la vez

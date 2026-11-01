@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://dxeylkog3hvit" path="res://scene/KeyPickup.tscn" id="7_p1hux"]
 [ext_resource type="PackedScene" uid="uid://duoopuih5wicf" path="res://scene/ExitDoor.tscn" id="8_of57s"]
 [ext_resource type="PackedScene" uid="uid://d245bs3rbm8gf" path="res://scene/Cobweb.tscn" id="9_b5f6u"]
+[ext_resource type="Script" uid="uid://ctxb028yc5kd2" path="res://scripts/KeyCounter.cs" id="10_tqoya"]
+[ext_resource type="FontFile" uid="uid://csh4ji5risjar" path="res://font/PressStart2P-Regular.ttf" id="10_wscrc"]
+[ext_resource type="Script" uid="uid://xe5ynmby5bll" path="res://scripts/EchoCounter.cs" id="12_mswub"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_272bh"]
 texture = ExtResource("2_p1hux")
@@ -633,7 +636,7 @@ position = Vector2(-5.2902493, 99.98508)
 
 [node name="ExitDoor" parent="." unique_id=548455410 instance=ExtResource("8_of57s")]
 position = Vector2(562, 926)
-NextScene = "res://LevelComplete.tscn"
+NextScene = "uid://dt1k0xe2n5c4k"
 
 [node name="Dog10" parent="." unique_id=109612920 instance=ExtResource("4_b5f6u")]
 position = Vector2(680, -293)
@@ -692,3 +695,28 @@ position = Vector2(1732, -442)
 
 [node name="Cobweb8" parent="." unique_id=844819425 instance=ExtResource("9_b5f6u")]
 position = Vector2(1498, -197)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1020864727]
+
+[node name="KeyCounter" type="Label" parent="HUD" unique_id=1044547691 node_paths=PackedStringArray("Player")]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 228.0
+offset_bottom = 60.551723
+theme_override_fonts/font = ExtResource("10_wscrc")
+theme_override_font_sizes/font_size = 25
+text = "KEYS: 0/2"
+script = ExtResource("10_tqoya")
+Player = NodePath("../../CharacterBody2D")
+TotalKeys = 2
+
+[node name="EchoCounter" type="Label" parent="HUD" unique_id=26803438 node_paths=PackedStringArray("Player")]
+offset_left = 20.0
+offset_top = 55.0
+offset_right = 272.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("10_wscrc")
+theme_override_font_sizes/font_size = 25
+text = "ECHO: 0/3"
+script = ExtResource("12_mswub")
+Player = NodePath("../../CharacterBody2D")
