@@ -526,7 +526,6 @@ position = Vector2(2729.9998, 1200)
 scale = Vector2(5, 5)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=820812385]
-visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=907872709]

@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dxeylkog3hvit" path="res://scene/KeyPickup.tscn" id="7_p1hux"]
 [ext_resource type="PackedScene" uid="uid://duoopuih5wicf" path="res://scene/ExitDoor.tscn" id="8_of57s"]
 [ext_resource type="PackedScene" uid="uid://d245bs3rbm8gf" path="res://scene/Cobweb.tscn" id="9_b5f6u"]
-[ext_resource type="Script" uid="uid://ctxb028yc5kd2" path="res://scripts/KeyCounter.cs" id="10_tqoya"]
+[ext_resource type="Script" uid="uid://duu42bgvtm2v2" path="res://scripts/KeyCounter.cs" id="10_tqoya"]
 [ext_resource type="FontFile" uid="uid://csh4ji5risjar" path="res://font/PressStart2P-Regular.ttf" id="10_wscrc"]
 [ext_resource type="Script" uid="uid://xe5ynmby5bll" path="res://scripts/EchoCounter.cs" id="12_mswub"]
 
@@ -636,7 +636,7 @@ position = Vector2(-5.2902493, 99.98508)
 
 [node name="ExitDoor" parent="." unique_id=548455410 instance=ExtResource("8_of57s")]
 position = Vector2(562, 926)
-NextScene = "uid://dt1k0xe2n5c4k"
+NextScene = "uid://h8l4fx63s3i6"
 
 [node name="Dog10" parent="." unique_id=109612920 instance=ExtResource("4_b5f6u")]
 position = Vector2(680, -293)
