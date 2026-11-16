@@ -41,6 +41,20 @@ public partial class ExitDoor : Area2D
 		if (_player.KeysCollected < RequiredKeys)
 		{
 			GD.Print($"Puerta cerrada: te faltan llaves ({_player.KeysCollected}/{RequiredKeys})");
+
+			// Mostrar aviso solamente en el tutorial
+			TutorialController tutorial = GetTree()
+				.CurrentScene.GetNodeOrNull<TutorialController>("TutorialController");
+
+			if (tutorial != null)
+			{
+				tutorial.ShowMessage(
+					"PUERTA BLOQUEADA",
+					"NECESITAS UNA LLAVE",
+		            "Debes encontrar la llave para abrir esta puerta y continuar."
+				);
+			}
+
 			return;
 		}
 

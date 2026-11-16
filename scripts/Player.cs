@@ -22,6 +22,7 @@ public partial class Player : CharacterBody2D
 	private ColorRect _deathBackground;
 	private Label _deathLabel;
 	private bool _isDying = false;
+	private bool _tutorialDeathTipShown = false;
 
 	// ---- Lo que leen otros scripts ----
 	public bool IsEchoLoud => _echo != null && _echo.IsEchoLoud;
@@ -106,8 +107,6 @@ public partial class Player : CharacterBody2D
 
 	private async void Die()
 	{
-		GD.Print("PRUEBA: SE EJECUTO DIE");
-
 		if (_isDying)
 			return;
 
@@ -160,6 +159,24 @@ public partial class Player : CharacterBody2D
 
 		_deathBackground.Hide();
 		_isDying = false;
+
+		// Mostrar consejo después de la primera muerte del tutorial
+		if (!_tutorialDeathTipShown)
+		{
+			TutorialController tutorial = GetTree()
+				.CurrentScene.GetNodeOrNull<TutorialController>("TutorialController");
+
+			if (tutorial != null)
+			{
+				_tutorialDeathTipShown = true;
+
+				tutorial.ShowMessage(
+					"USA EL ECHO A TU FAVOR",
+					"CONSEJO DE SUPERVIVENCIA",
+		            "El tercer ECHO genera un sonido que atrae a las criaturas. Úsalo para alejarlas de tu camino y escapar."
+				);
+			}
+		}
 	}
 
 	// Busca un componente por nombre y avisa exactamente qué falta

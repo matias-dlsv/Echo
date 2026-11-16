@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dpiya1yf8y0n8" path="res://scripts/AudioController.cs" id="6_s17wd"]
 [ext_resource type="AudioStream" uid="uid://lntbik23u8du" path="res://sounds/BIG BELL SOUND EFFECT.mp3" id="8_thhrd"]
 [ext_resource type="FontFile" uid="uid://csh4ji5risjar" path="res://font/PressStart2P-Regular.ttf" id="9_mkfsk"]
+[ext_resource type="Script" uid="uid://noqqutfrewn2" path="res://scripts/ExitCompass.cs" id="10_s17wd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lc4py"]
 atlas = ExtResource("1_yymxn")
@@ -436,6 +437,10 @@ height = 80
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_s17wd"]
+blend_mode = 1
+light_mode = 1
+
 [node name="player" type="CharacterBody2D" unique_id=331733569]
 z_index = 1
 script = ExtResource("2_1bvp3")
@@ -506,3 +511,12 @@ theme_override_fonts/font = ExtResource("9_mkfsk")
 theme_override_font_sizes/font_size = 28
 text = "HAS MUERTO"
 horizontal_alignment = 1
+
+[node name="ExitCompass" type="Node2D" parent="." unique_id=1685833050]
+script = ExtResource("10_s17wd")
+
+[node name="GlowSprite" type="Sprite2D" parent="ExitCompass" unique_id=1564029687]
+modulate = Color(1, 0.89411765, 0.6392157, 1)
+material = SubResource("CanvasItemMaterial_s17wd")
+scale = Vector2(0.06, 0.06)
+texture = SubResource("GradientTexture2D_maugy")
