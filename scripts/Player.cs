@@ -16,6 +16,12 @@ public partial class Player : CharacterBody2D
 	private AudioController _audio;
 	private EchoController _echo;
 	public int EchoCount => _echo?.EchoCount ?? 0;
+	public bool CompletedEchoTraining =>
+		_echo != null && _echo.CompletedEchoTraining;
+	private CanvasLayer _deathUI;
+	private ColorRect _deathBackground;
+	private Label _deathLabel;
+	private bool _isDying = false;
 
 	// ---- Lo que leen otros scripts ----
 	public bool IsEchoLoud => _echo != null && _echo.IsEchoLoud;
@@ -29,6 +35,23 @@ public partial class Player : CharacterBody2D
 		_state = Find<StateController>("StateController");
 		_audio = Find<AudioController>("AudioController");
 		_echo = Find<EchoController>("PointLight2D");
+		_deathUI = Find<CanvasLayer>("DeathUI");
+		_deathBackground = Find<ColorRect>("DeathUI/ColorRect");
+		_deathLabel = Find<Label>("DeathUI/DeathLabel");
+
+		if (_deathUI == null || _deathBackground == null || _deathLabel == null)
+		{
+			SetPhysicsProcess(false);
+			return;
+		}
+
+		// Inicializar la interfaz de muerte
+		_deathUI.Show();
+
+		_deathBackground.Show();
+		_deathBackground.Modulate = new Color(1, 1, 1, 0);
+
+		_deathLabel.Hide();
 
 		if (_input == null || _physics == null || _state == null || _audio == null || _echo == null)
 		{
@@ -44,6 +67,11 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (_isDying)
+		{
+			Velocity = Vector2.Zero;
+			return;
+		}
 		_physics.SetDirection(_input.Direction);
 		_state.UpdateAnimation(_physics.IsMoving, _physics.LastDirection, _physics.SlowFactor);
 		_physics.Move();
@@ -51,6 +79,9 @@ public partial class Player : CharacterBody2D
 
 	private void OnEchoPressed()
 	{
+		if (_isDying)
+			return;
+
 		bool loud = _echo.Activate();
 		if (loud) _audio.PlayEcho();
 	}
@@ -73,15 +104,62 @@ public partial class Player : CharacterBody2D
 	// Una Door te mueve al otro lado
 	public void TeleportTo(Vector2 globalPos) => _physics.TeleportTo(globalPos);
 
-	private void Die()
+	private async void Die()
 	{
+		GD.Print("PRUEBA: SE EJECUTO DIE");
+
+		if (_isDying)
+			return;
+
+		_isDying = true;
+
 		_echo.ResetEcho();
 		_audio.StopAll();
 
-		// Todo lo que esté en el grupo "resettable" (enemigos, trampas) vuelve a su estado inicial
+		_deathBackground.Show();
+		_deathLabel.Hide();
+
+		// Oscurecer gradualmente la pantalla
+		Tween fadeOut = CreateTween();
+		fadeOut.TweenProperty(
+			_deathBackground,
+			"modulate:a",
+			1.0f,
+			0.5f
+		);
+
+		await ToSignal(fadeOut, Tween.SignalName.Finished);
+
+		// Mostrar mensaje de muerte
+		_deathLabel.Show();
+
+		await ToSignal(
+			GetTree().CreateTimer(1.0),
+			SceneTreeTimer.SignalName.Timeout
+		);
+
+		// Reiniciar enemigos y trampas
 		GetTree().CallGroup("resettable", "ResetToDefault");
 
+		// Volver al último checkpoint
 		TeleportTo(_state.RespawnPosition);
+
+		// Ocultar mensaje
+		_deathLabel.Hide();
+
+		// Volver a iluminar la pantalla
+		Tween fadeIn = CreateTween();
+		fadeIn.TweenProperty(
+			_deathBackground,
+			"modulate:a",
+			0.0f,
+			0.5f
+		);
+
+		await ToSignal(fadeIn, Tween.SignalName.Finished);
+
+		_deathBackground.Hide();
+		_isDying = false;
 	}
 
 	// Busca un componente por nombre y avisa exactamente qué falta

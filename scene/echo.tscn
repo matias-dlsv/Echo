@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://djeqd47mphejf" path="res://scripts/StateController.cs" id="5_mkfsk"]
 [ext_resource type="Script" uid="uid://dpiya1yf8y0n8" path="res://scripts/AudioController.cs" id="6_s17wd"]
 [ext_resource type="AudioStream" uid="uid://lntbik23u8du" path="res://sounds/BIG BELL SOUND EFFECT.mp3" id="8_thhrd"]
+[ext_resource type="FontFile" uid="uid://csh4ji5risjar" path="res://font/PressStart2P-Regular.ttf" id="9_mkfsk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lc4py"]
 atlas = ExtResource("1_yymxn")
@@ -476,3 +477,32 @@ script = ExtResource("6_s17wd")
 [node name="EchoSound" type="AudioStreamPlayer2D" parent="AudioController" unique_id=675518689]
 stream = ExtResource("8_thhrd")
 pitch_scale = 0.19
+
+[node name="DeathUI" type="CanvasLayer" parent="." unique_id=2009931448]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="DeathUI" unique_id=593560354]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DeathLabel" type="Label" parent="DeathUI" unique_id=616124704]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.5
+offset_top = -11.5
+offset_right = 51.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("9_mkfsk")
+theme_override_font_sizes/font_size = 28
+text = "HAS MUERTO"
+horizontal_alignment = 1

@@ -19,6 +19,11 @@ public partial class EchoController : PointLight2D
 	private float _baseScale = 1f;
 	private int _chargeIndex;
 	public int EchoCount => _chargeIndex;
+	// Cuenta los ECHOS utilizados desde el último reinicio
+	public int TotalEchoesUsed { get; private set; } = 0;
+
+	// Indica si completó los tres ECHOS del tutorial
+	public bool CompletedEchoTraining => TotalEchoesUsed >= 3;
 	private Tween _tween;
 
 	public override void _Ready()
@@ -43,6 +48,8 @@ public partial class EchoController : PointLight2D
 		_tween.TweenCallback(Callable.From(() => { IsEchoLoud = false; }));
 
 		_chargeIndex = (_chargeIndex + 1) % LightBoostMultipliers.Length;
+		TotalEchoesUsed++;
+		GD.Print($"Entrenamiento ECHO: {TotalEchoesUsed}/3");
 		return loud;
 	}
 

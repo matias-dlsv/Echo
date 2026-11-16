@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://duu42bgvtm2v2" path="res://scripts/KeyCounter.cs" id="10_wrfti"]
 [ext_resource type="FontFile" uid="uid://csh4ji5risjar" path="res://font/PressStart2P-Regular.ttf" id="11_6iio1"]
 [ext_resource type="Script" uid="uid://xe5ynmby5bll" path="res://scripts/EchoCounter.cs" id="11_xftar"]
+[ext_resource type="Script" uid="uid://b885qkn1wj50d" path="res://scripts/TutorialController.cs" id="13_l02f5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_272bh"]
 texture = ExtResource("2_xftar")
@@ -518,7 +519,18 @@ occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_h2yge")
 
-[node name="Main" type="Node2D" unique_id=915414100]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6iio1"]
+bg_color = Color(0.0627451, 0.08235294, 0.11764706, 0.9019608)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 24.0
+expand_margin_top = 20.0
+expand_margin_right = 24.0
+expand_margin_bottom = 20.0
+
+[node name="Main2" type="Node2D" unique_id=915414100]
 
 [node name="CharacterBody2D" parent="." unique_id=331733569 instance=ExtResource("1_qi44v")]
 modulate = Color(0.6190818, 0.6190819, 0.6190818, 1)
@@ -526,6 +538,7 @@ position = Vector2(550, 1200)
 scale = Vector2(5, 5)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=820812385]
+visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=907872709]
@@ -551,7 +564,7 @@ occlusion_enabled = false
 [node name="terreno2" type="TileMapLayer" parent="." unique_id=149376175]
 z_index = -1
 scale = Vector2(5, 5)
-tile_map_data = PackedByteArray("AAAHABAAAAAHAAMAAAAGABAAAAAGAAMAAAANAPz/AAAHAAMAAAAMAPz/AAAGAAMAAAA=")
+tile_map_data = PackedByteArray("AAAHABAAAAAHAAMAAAAGABAAAAAGAAMAAAANAPz/AAAHAAMAAAAMAPz/AAAGAAMAAAANAAIAAAAHAAYAAAAMAAIAAAAGAAYAAAAHAAkAAAAGAAYAAAAIAAkAAAAHAAYAAAA=")
 tile_set = SubResource("TileSet_maugy")
 
 [node name="Dog" parent="." unique_id=743155501 instance=ExtResource("4_l02f5")]
@@ -561,9 +574,26 @@ position = Vector2(1185, -156)
 position = Vector2(1047, -146)
 
 [node name="Door" parent="." unique_id=103686606 node_paths=PackedStringArray("Destination") instance=ExtResource("5_2mh3o")]
-position = Vector2(1040, 187)
+position = Vector2(1038.0001, 218)
 rotation = -0.010955915
 Destination = NodePath("../Checkpoint2")
+
+[node name="Door2" parent="." unique_id=1702573531 node_paths=PackedStringArray("Destination") instance=ExtResource("5_2mh3o")]
+position = Vector2(1039.0001, 172.99998)
+rotation = -0.010955915
+Destination = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Door2" unique_id=2016394764]
+position = Vector2(-0.986135, 89.99461)
+
+[node name="Door3" parent="." unique_id=1368350881 node_paths=PackedStringArray("Destination") instance=ExtResource("5_2mh3o")]
+position = Vector2(638.9999, 781)
+rotation = -0.010955915
+Destination = NodePath("Marker2D")
+RequiresEchoTraining = true
+
+[node name="Marker2D" type="Marker2D" parent="Door3" unique_id=672178244]
+position = Vector2(-3.1889167, -74.03937)
 
 [node name="Checkpoint" parent="." unique_id=1745227266 instance=ExtResource("6_d4rgf")]
 position = Vector2(556, 1187)
@@ -609,3 +639,48 @@ theme_override_font_sizes/font_size = 25
 text = "ECHO: 0/3"
 script = ExtResource("11_xftar")
 Player = NodePath("../../CharacterBody2D")
+
+[node name="TutorialUI" type="CanvasLayer" parent="." unique_id=1005574024]
+
+[node name="CenterContainer" type="CenterContainer" parent="TutorialUI" unique_id=990048327]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ObjectivePanel" type="PanelContainer" parent="TutorialUI/CenterContainer" unique_id=142848472]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6iio1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialUI/CenterContainer/ObjectivePanel" unique_id=651777795]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="TutorialUI/CenterContainer/ObjectivePanel/VBoxContainer" unique_id=1912563493]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("11_6iio1")
+theme_override_font_sizes/font_size = 28
+text = "BIENVENIDO A ECHO"
+horizontal_alignment = 1
+
+[node name="KeysLabel" type="Label" parent="TutorialUI/CenterContainer/ObjectivePanel/VBoxContainer" unique_id=697863667]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9098039, 0.78039217, 0.4862745, 1)
+theme_override_fonts/font = ExtResource("11_6iio1")
+theme_override_font_sizes/font_size = 16
+text = "TUTORIAL"
+horizontal_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="TutorialUI/CenterContainer/ObjectivePanel/VBoxContainer" unique_id=983753487]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.77254903, 0.79607844, 0.827451, 1)
+theme_override_fonts/font = ExtResource("11_6iio1")
+theme_override_font_sizes/font_size = 10
+text = "Aprende a utilizar tus poderes para escapar del templo"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="TutorialController" type="Node" parent="." unique_id=597911541]
+script = ExtResource("13_l02f5")

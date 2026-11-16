@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://duu42bgvtm2v2" path="res://scripts/KeyCounter.cs" id="10_tqoya"]
 [ext_resource type="FontFile" uid="uid://csh4ji5risjar" path="res://font/PressStart2P-Regular.ttf" id="10_wscrc"]
 [ext_resource type="Script" uid="uid://xe5ynmby5bll" path="res://scripts/EchoCounter.cs" id="12_mswub"]
+[ext_resource type="Script" uid="uid://cs3ts5byaqa0c" path="res://scripts/LevelController.cs" id="13_mswub"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_272bh"]
 texture = ExtResource("2_p1hux")
@@ -518,6 +519,17 @@ occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_h2yge")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbejv"]
+bg_color = Color(0.0627451, 0.08235294, 0.11764706, 0.9019608)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 24.0
+expand_margin_top = 20.0
+expand_margin_right = 24.0
+expand_margin_bottom = 20.0
+
 [node name="Main" type="Node2D" unique_id=915414100]
 
 [node name="CharacterBody2D" parent="." unique_id=331733569 instance=ExtResource("1_4j5ol")]
@@ -526,6 +538,7 @@ position = Vector2(550, 1200)
 scale = Vector2(5, 5)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=820812385]
+visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=907872709]
@@ -626,6 +639,13 @@ Destination = NodePath("Marker2D")
 [node name="Marker2D" type="Marker2D" parent="Door4" unique_id=809372780]
 position = Vector2(9, 118)
 
+[node name="Door7" parent="." unique_id=822937446 node_paths=PackedStringArray("Destination") instance=ExtResource("5_tqoya")]
+position = Vector2(559, 12)
+Destination = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Door7" unique_id=1964477543]
+position = Vector2(9, 118)
+
 [node name="Door5" parent="." unique_id=281352025 node_paths=PackedStringArray("Destination") instance=ExtResource("5_tqoya")]
 position = Vector2(1092, 247)
 rotation = 1.5678936
@@ -720,3 +740,48 @@ theme_override_font_sizes/font_size = 25
 text = "ECHO: 0/3"
 script = ExtResource("12_mswub")
 Player = NodePath("../../CharacterBody2D")
+
+[node name="LevelUI" type="CanvasLayer" parent="." unique_id=593328643]
+
+[node name="CenterContainer" type="CenterContainer" parent="LevelUI" unique_id=1695144846]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ObjectivePanel" type="PanelContainer" parent="LevelUI/CenterContainer" unique_id=2077042920]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cbejv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelUI/CenterContainer/ObjectivePanel" unique_id=1090850557]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="LevelUI/CenterContainer/ObjectivePanel/VBoxContainer" unique_id=54419394]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_wscrc")
+theme_override_font_sizes/font_size = 28
+text = "UNA NUEVA ZONA"
+horizontal_alignment = 1
+
+[node name="KeysLabel" type="Label" parent="LevelUI/CenterContainer/ObjectivePanel/VBoxContainer" unique_id=604040767]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9098039, 0.78039217, 0.4862745, 1)
+theme_override_fonts/font = ExtResource("10_wscrc")
+theme_override_font_sizes/font_size = 16
+text = "Encuentra las 2 llaves"
+horizontal_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="LevelUI/CenterContainer/ObjectivePanel/VBoxContainer" unique_id=702983700]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.77254903, 0.79607844, 0.827451, 1)
+theme_override_fonts/font = ExtResource("10_wscrc")
+theme_override_font_sizes/font_size = 10
+text = "Reúne todas las llaves para avanzar al siguiente nivel."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="LevelController" type="Node" parent="." unique_id=1639612591]
+script = ExtResource("13_mswub")
