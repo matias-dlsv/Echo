@@ -710,7 +710,7 @@ position = Vector2(2.8519497, 51.0085)
 [node name="ExitDoor" parent="." unique_id=548455410 instance=ExtResource("8_l4tox")]
 position = Vector2(2800, -1163)
 RequiredKeys = 3
-NextScene = "res://LevelComplete.tscn"
+NextScene = "uid://guvhwyafqn1t"
 
 [node name="DoorGlow" type="PointLight2D" parent="ExitDoor" unique_id=797127452]
 enabled = false

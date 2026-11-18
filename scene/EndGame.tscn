@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://guvhwyafqn1t"]
+
+[ext_resource type="Script" uid="uid://bbmscmfr4sp24" path="res://scripts/EndGame.cs" id="1_a5y4e"]
+[ext_resource type="FontFile" uid="uid://csh4ji5risjar" path="res://font/PressStart2P-Regular.ttf" id="1_cykfn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8f2p"]
+content_margin_left = 30.0
+content_margin_top = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 30.0
+bg_color = Color(0.09019608, 0.078431375, 0.12156863, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8509804, 0.70980394, 0.43137255, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cykfn"]
+content_margin_left = 16.0
+content_margin_top = 10.0
+content_margin_right = 16.0
+content_margin_bottom = 10.0
+bg_color = Color(0.8509804, 0.70980394, 0.43137255, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="EndGame" type="Control" unique_id=1989315653]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a5y4e")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2016247627]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=41485104]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=286886700]
+custom_minimum_size = Vector2(500, 250)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_b8f2p")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer" unique_id=1937162216]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1841414942]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_cykfn")
+theme_override_font_sizes/font_size = 36
+text = "¡HAS ESCAPADO!"
+horizontal_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1767131828]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8117647, 0.78039217, 0.8352941, 1)
+theme_override_fonts/font = ExtResource("1_cykfn")
+theme_override_font_sizes/font_size = 18
+text = "Has encontrado todas las llaves y logrado escapar del templo oscuro."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="RestartButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=788014503]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.09019608, 0.078431375, 0.12156863, 1)
+theme_override_colors/font_focus_color = Color(0.09019608, 0.078431375, 0.12156863, 1)
+theme_override_colors/font_pressed_color = Color(0.09019608, 0.078431375, 0.12156863, 1)
+theme_override_colors/font_hover_color = Color(0.09019608, 0.078431375, 0.12156863, 1)
+theme_override_fonts/font = ExtResource("1_cykfn")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_cykfn")
+text = "RESTART"
