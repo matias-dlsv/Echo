@@ -41,6 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://5qph2jqq6es6" path="res://sprites/runes/rune_air_carved.png" id="37_gdlqi"]
 [ext_resource type="Texture2D" uid="uid://cas3mmmgh2oh" path="res://sprites/runes/rune_star_carved.png" id="38_txiyo"]
 [ext_resource type="Texture2D" uid="uid://bgrm8837p7a4p" path="res://sprites/runes/rune_binding_carved.png" id="39_l4nsa"]
+[ext_resource type="PackedScene" uid="uid://dv07jdqsi444n" path="res://scene/SpikeTrap.tscn" id="42_ye2kf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_272bh"]
 texture = ExtResource("2_epjhv")
@@ -671,7 +672,7 @@ rotation = 1.6146477
 position = Vector2(1683, 783)
 
 [node name="KeyPickup" parent="." unique_id=1127419612 instance=ExtResource("7_xbww7")]
-position = Vector2(553, -750)
+position = Vector2(992, -416)
 
 [node name="Door2" parent="." unique_id=697312421 node_paths=PackedStringArray("Destination") instance=ExtResource("5_cmtua")]
 position = Vector2(1027, -1120)
@@ -690,7 +691,7 @@ position = Vector2(-4.428986, 132.02039)
 position = Vector2(1926, -751)
 
 [node name="KeyPickup3" parent="." unique_id=47896027 instance=ExtResource("7_xbww7")]
-position = Vector2(126, 580)
+position = Vector2(126, 1100)
 
 [node name="Dog20" parent="." unique_id=2129446505 instance=ExtResource("4_68ptg")]
 position = Vector2(2342, 222)
@@ -699,7 +700,7 @@ position = Vector2(2342, 222)
 position = Vector2(2367, 982)
 
 [node name="Dog9" parent="." unique_id=693459986 instance=ExtResource("4_68ptg")]
-position = Vector2(2728, -1525)
+position = Vector2(2698, -1560)
 
 [node name="Door4" parent="." unique_id=1137359444 node_paths=PackedStringArray("Destination") instance=ExtResource("5_cmtua")]
 position = Vector2(2085, 14)
@@ -737,6 +738,7 @@ RequiredKeys = 3
 NextScene = "uid://guvhwyafqn1t"
 
 [node name="DoorGlow" type="PointLight2D" parent="ExitDoor" unique_id=797127452]
+position = Vector2(1, 14)
 enabled = false
 color = Color(1, 0.8862745, 0.627451, 1)
 energy = 8.0
@@ -747,25 +749,25 @@ texture_scale = 10.0
 position = Vector2(680, -293)
 
 [node name="Dog11" parent="." unique_id=717304065 instance=ExtResource("4_68ptg")]
-position = Vector2(685, -447)
+position = Vector2(728, -472)
 
 [node name="Dog12" parent="." unique_id=2096911093 instance=ExtResource("4_68ptg")]
-position = Vector2(697, -619)
+position = Vector2(344, -1032)
 
 [node name="Dog13" parent="." unique_id=809763318 instance=ExtResource("4_68ptg")]
-position = Vector2(694, -761)
+position = Vector2(544, -768)
 
 [node name="Dog14" parent="." unique_id=1594064235 instance=ExtResource("4_68ptg")]
-position = Vector2(418, -311)
+position = Vector2(448, -128)
 
 [node name="Dog15" parent="." unique_id=1705391622 instance=ExtResource("4_68ptg")]
-position = Vector2(401, -474)
+position = Vector2(168, -496)
 
 [node name="Dog16" parent="." unique_id=379308914 instance=ExtResource("4_68ptg")]
-position = Vector2(401, -650)
+position = Vector2(224, -832)
 
 [node name="Dog17" parent="." unique_id=1169725754 instance=ExtResource("4_68ptg")]
-position = Vector2(388, -811)
+position = Vector2(904, -696)
 
 [node name="Dog18" parent="." unique_id=1759669631 instance=ExtResource("4_68ptg")]
 position = Vector2(935, -1039)
@@ -1160,3 +1162,39 @@ texture = ExtResource("23_g3rbi")
 
 [node name="Dog6" parent="." unique_id=639208676 instance=ExtResource("4_68ptg")]
 position = Vector2(1402, -444)
+
+[node name="SpikeTrap" parent="." unique_id=1223865697 instance=ExtResource("42_ye2kf")]
+position = Vector2(544.00006, -927.99994)
+scale = Vector2(1.4, 1.4)
+
+[node name="SpikeTrap2" parent="." unique_id=1204647003 instance=ExtResource("42_ye2kf")]
+position = Vector2(224.00003, -672)
+scale = Vector2(1.4, 1.4)
+
+[node name="SpikeTrap3" parent="." unique_id=1287654471 instance=ExtResource("42_ye2kf")]
+position = Vector2(864, -544)
+scale = Vector2(1.4, 1.4)
+
+[node name="SpikeTrap4" parent="." unique_id=157521535 instance=ExtResource("42_ye2kf")]
+position = Vector2(224.00006, -288)
+scale = Vector2(1.4, 1.4)
+
+[node name="SpikeTrap5" parent="." unique_id=1964801648 instance=ExtResource("42_ye2kf")]
+position = Vector2(680, -1184)
+scale = Vector2(1.4, 1.4)
+
+[node name="SpikeTrap6" parent="." unique_id=1499346149 instance=ExtResource("42_ye2kf")]
+position = Vector2(160.00006, -1120)
+scale = Vector2(1.4, 1.4)
+
+[node name="SpikeTrap7" parent="." unique_id=1559721831 instance=ExtResource("42_ye2kf")]
+position = Vector2(296, 689.99994)
+scale = Vector2(1.4, 1.4)
+
+[node name="SpikeTrap8" parent="." unique_id=1480536405 instance=ExtResource("42_ye2kf")]
+position = Vector2(916.99994, 1121)
+scale = Vector2(1.4, 1.4)
+
+[node name="SpikeTrap9" parent="." unique_id=814551598 instance=ExtResource("42_ye2kf")]
+position = Vector2(730.00006, 147.00002)
+scale = Vector2(1.4, 1.4)
