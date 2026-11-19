@@ -1,0 +1,302 @@
+[gd_scene format=3 uid="uid://cfnh24ow705cm"]
+
+[ext_resource type="Script" uid="uid://clmcd4wi75x2" path="res://scripts/RunePuzzle.cs" id="1_iffuf"]
+[ext_resource type="FontFile" uid="uid://csh4ji5risjar" path="res://font/PressStart2P-Regular.ttf" id="1_jwt5y"]
+[ext_resource type="Texture2D" uid="uid://cpckh6t0u2gij" path="res://sprites/runes/rune_lightning_glow.png" id="2_yhwk0"]
+[ext_resource type="Texture2D" uid="uid://c6g8om6y0o0dp" path="res://sprites/runes/rune_moon_glow.png" id="3_iffuf"]
+[ext_resource type="Texture2D" uid="uid://beqh0nup8i6c4" path="res://sprites/runes/rune_fire_glow.png" id="4_8r7bb"]
+[ext_resource type="Texture2D" uid="uid://c7skcc4lc3bbg" path="res://sprites/runes/rune_nature_glow.png" id="5_puy0d"]
+[ext_resource type="Texture2D" uid="uid://cicji5vb6xyaw" path="res://sprites/runes/rune_seal_glow.png" id="6_bmmfw"]
+[ext_resource type="Texture2D" uid="uid://bms608uqgynoq" path="res://sprites/runes/rune_key_glow.png" id="7_cewxq"]
+[ext_resource type="Texture2D" uid="uid://cv0ij0ac4nbc8" path="res://sprites/runes/rune_gate_glow.png" id="8_8sdjo"]
+[ext_resource type="Texture2D" uid="uid://cj5uqdocwleta" path="res://sprites/runes/rune_earth_glow.png" id="9_x7b8g"]
+[ext_resource type="Texture2D" uid="uid://bpq5g3ku7y7aw" path="res://sprites/runes/rune_binding_glow.png" id="10_00k3k"]
+[ext_resource type="Texture2D" uid="uid://dw0b78gg43m7h" path="res://sprites/runes/rune_aegis_glow.png" id="11_n1g0e"]
+[ext_resource type="Texture2D" uid="uid://2v4dx6sv7a4g" path="res://sprites/runes/rune_chain_glow.png" id="12_6jqr4"]
+[ext_resource type="Texture2D" uid="uid://3lors5mluos5" path="res://sprites/runes/rune_cross_glow.png" id="13_dpbgj"]
+[ext_resource type="Texture2D" uid="uid://dd8bfdrveq5m7" path="res://sprites/runes/rune_thorn_glow.png" id="14_khtvp"]
+[ext_resource type="Texture2D" uid="uid://bt5uwodq6wfoc" path="res://sprites/runes/rune_air_glow.png" id="15_x34fk"]
+[ext_resource type="Texture2D" uid="uid://bx4njgyt05stg" path="res://sprites/runes/rune_circle_glow.png" id="16_514my"]
+[ext_resource type="Texture2D" uid="uid://dtf7itijvsh65" path="res://sprites/runes/rune_lock_glow.png" id="17_un4rl"]
+[ext_resource type="Texture2D" uid="uid://m2ixce25n8gi" path="res://sprites/runes/rune_shadow_glow.png" id="18_xwm73"]
+[ext_resource type="Texture2D" uid="uid://bgerhmaygvmim" path="res://sprites/runes/rune_eye_glow.png" id="19_7douy"]
+[ext_resource type="Texture2D" uid="uid://du04p2frw35py" path="res://sprites/runes/rune_star_glow.png" id="20_bl1kb"]
+[ext_resource type="Texture2D" uid="uid://chfm0ppofxymx" path="res://sprites/runes/rune_water_glow.png" id="21_wey08"]
+[ext_resource type="Texture2D" uid="uid://dyov2rjh5eunj" path="res://sprites/runes/rune_veil_glow.png" id="22_bggbe"]
+[ext_resource type="Texture2D" uid="uid://1cq6bte25qd1" path="res://sprites/runes/rune_spiral_glow.png" id="23_45kf3"]
+[ext_resource type="Texture2D" uid="uid://cm2vulddxk0ps" path="res://sprites/runes/rune_surge_glow.png" id="24_ecibd"]
+[ext_resource type="Texture2D" uid="uid://dy1j66ylmyu4m" path="res://sprites/runes/rune_ice_glow.png" id="25_0dks3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbejv"]
+bg_color = Color(0.1882353, 0.17254902, 0.21960784, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.77254903, 0.6431373, 0.41568628, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yhwk0"]
+bg_color = Color(0.12941177, 0.12156863, 0.15294118, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.77254903, 0.6431373, 0.41568628, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iffuf"]
+bg_color = Color(0.2509804, 0.20784314, 0.14901961, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.77254903, 0.6431373, 0.41568628, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_puy0d"]
+bg_color = Color(0.4, 0.3137255, 0.18431373, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.9490196, 0.8235294, 0.5411765, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8r7bb"]
+bg_color = Color(0.15686275, 0.14509805, 0.18431373, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.56078434, 0.47058824, 0.30980393, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bmmfw"]
+bg_color = Color(0.21960784, 0.1882353, 0.22745098, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.77254903, 0.6431373, 0.41568628, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="RunePuzzle" type="CanvasLayer" unique_id=949950427]
+process_mode = 3
+script = ExtResource("1_iffuf")
+
+[node name="DarkBackground" type="ColorRect" parent="." unique_id=1687825681]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7019608)
+
+[node name="PuzzlePanel" type="PanelContainer" parent="." unique_id=981738816]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -355.0
+offset_top = -220.0
+offset_right = 355.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cbejv")
+
+[node name="ContentMargin" type="MarginContainer" parent="PuzzlePanel" unique_id=112139362]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="MainVBox" type="VBoxContainer" parent="PuzzlePanel/ContentMargin" unique_id=1927098608]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TitleLabel" type="Label" parent="PuzzlePanel/ContentMargin/MainVBox" unique_id=184404921]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_jwt5y")
+theme_override_font_sizes/font_size = 28
+text = "EL SELLO DE LAS RUNAS"
+horizontal_alignment = 1
+
+[node name="InstructionLabel" type="Label" parent="PuzzlePanel/ContentMargin/MainVBox" unique_id=993559344]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78431374, 0.7490196, 0.80784315, 1)
+text = "Arrastra las runas a los espacios vacíos en el orden correcto."
+horizontal_alignment = 1
+
+[node name="RuneSlots" type="HBoxContainer" parent="PuzzlePanel/ContentMargin/MainVBox" unique_id=64212214]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Slot1" type="Panel" parent="PuzzlePanel/ContentMargin/MainVBox/RuneSlots" unique_id=799841296]
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yhwk0")
+
+[node name="Slot2" type="Panel" parent="PuzzlePanel/ContentMargin/MainVBox/RuneSlots" unique_id=1113549560]
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yhwk0")
+
+[node name="Slot3" type="Panel" parent="PuzzlePanel/ContentMargin/MainVBox/RuneSlots" unique_id=1420148]
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yhwk0")
+
+[node name="AvailableRunes" type="HBoxContainer" parent="PuzzlePanel/ContentMargin/MainVBox" unique_id=502470000]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="lightning" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes" unique_id=838670064]
+layout_mode = 2
+texture = ExtResource("2_yhwk0")
+
+[node name="moon" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes" unique_id=519692783]
+layout_mode = 2
+texture = ExtResource("3_iffuf")
+
+[node name="fire" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes" unique_id=1114927230]
+layout_mode = 2
+texture = ExtResource("4_8r7bb")
+
+[node name="nature" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes" unique_id=1078027626]
+layout_mode = 2
+texture = ExtResource("5_puy0d")
+
+[node name="seal" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes" unique_id=906159346]
+layout_mode = 2
+texture = ExtResource("6_bmmfw")
+
+[node name="key" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes" unique_id=613534890]
+layout_mode = 2
+texture = ExtResource("7_cewxq")
+
+[node name="gate" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes" unique_id=630389345]
+layout_mode = 2
+texture = ExtResource("8_8sdjo")
+
+[node name="earth" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes" unique_id=2017214611]
+layout_mode = 2
+texture = ExtResource("9_x7b8g")
+
+[node name="binding" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes" unique_id=1362183709]
+layout_mode = 2
+texture = ExtResource("10_00k3k")
+
+[node name="aegis" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes" unique_id=1321708349]
+layout_mode = 2
+texture = ExtResource("11_n1g0e")
+
+[node name="chain" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes" unique_id=1841981372]
+layout_mode = 2
+texture = ExtResource("12_6jqr4")
+
+[node name="cross" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes" unique_id=2115663521]
+layout_mode = 2
+texture = ExtResource("13_dpbgj")
+
+[node name="thorn" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes" unique_id=1997404527]
+layout_mode = 2
+texture = ExtResource("14_khtvp")
+
+[node name="AvailableRunes2" type="HBoxContainer" parent="PuzzlePanel/ContentMargin/MainVBox" unique_id=1534792614]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="air" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes2" unique_id=824419787]
+layout_mode = 2
+texture = ExtResource("15_x34fk")
+
+[node name="circle" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes2" unique_id=1286560225]
+layout_mode = 2
+texture = ExtResource("16_514my")
+
+[node name="lock" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes2" unique_id=978856183]
+layout_mode = 2
+texture = ExtResource("17_un4rl")
+
+[node name="shadow" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes2" unique_id=1563243499]
+layout_mode = 2
+texture = ExtResource("18_xwm73")
+
+[node name="eye" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes2" unique_id=49209301]
+layout_mode = 2
+texture = ExtResource("19_7douy")
+
+[node name="star" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes2" unique_id=612129399]
+layout_mode = 2
+texture = ExtResource("20_bl1kb")
+
+[node name="water" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes2" unique_id=1342579552]
+layout_mode = 2
+texture = ExtResource("21_wey08")
+
+[node name="veil" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes2" unique_id=1381444786]
+layout_mode = 2
+texture = ExtResource("22_bggbe")
+
+[node name="spiral" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes2" unique_id=661761319]
+layout_mode = 2
+texture = ExtResource("23_45kf3")
+
+[node name="surge" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes2" unique_id=1849784122]
+layout_mode = 2
+texture = ExtResource("24_ecibd")
+
+[node name="ice" type="TextureRect" parent="PuzzlePanel/ContentMargin/MainVBox/AvailableRunes2" unique_id=485069934]
+layout_mode = 2
+texture = ExtResource("25_0dks3")
+
+[node name="ActionButtons" type="HBoxContainer" parent="PuzzlePanel/ContentMargin/MainVBox" unique_id=508286910]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="ActivateButton" type="Button" parent="PuzzlePanel/ContentMargin/MainVBox/ActionButtons" unique_id=217730217]
+custom_minimum_size = Vector2(190, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9411765, 0.8666667, 0.70980394, 1)
+theme_override_colors/font_hover_color = Color(1, 0.9490196, 0.8235294, 1)
+theme_override_fonts/font = ExtResource("1_jwt5y")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_iffuf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_puy0d")
+text = "ACTIVAR SELLO"
+
+[node name="ExitButton" type="Button" parent="PuzzlePanel/ContentMargin/MainVBox/ActionButtons" unique_id=1146664570]
+custom_minimum_size = Vector2(190, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8392157, 0.77254903, 0.6392157, 1)
+theme_override_fonts/font = ExtResource("1_jwt5y")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_8r7bb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bmmfw")
+text = "SALIR"

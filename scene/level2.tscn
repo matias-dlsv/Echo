@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://c4pqkueynn7yj" path="res://scene/Checkpoint.tscn" id="6_nx5n0"]
 [ext_resource type="PackedScene" uid="uid://dxeylkog3hvit" path="res://scene/KeyPickup.tscn" id="7_xbww7"]
 [ext_resource type="PackedScene" uid="uid://duoopuih5wicf" path="res://scene/ExitDoor.tscn" id="8_l4tox"]
+[ext_resource type="Script" uid="uid://cd55xdt3l54re" path="res://scripts/RuneDoor.cs" id="8_ru06c"]
 [ext_resource type="PackedScene" uid="uid://d245bs3rbm8gf" path="res://scene/Cobweb.tscn" id="9_ggcsn"]
+[ext_resource type="PackedScene" uid="uid://cfnh24ow705cm" path="res://scene/RunePuzzle.tscn" id="9_r6iqq"]
 [ext_resource type="FontFile" uid="uid://csh4ji5risjar" path="res://font/PressStart2P-Regular.ttf" id="10_68ptg"]
 [ext_resource type="Script" uid="uid://duu42bgvtm2v2" path="res://scripts/KeyCounter.cs" id="10_epjhv"]
 [ext_resource type="Script" uid="uid://xe5ynmby5bll" path="res://scripts/EchoCounter.cs" id="12_cmtua"]
@@ -777,7 +779,9 @@ position = Vector2(9, -151)
 
 [node name="Door10" parent="." unique_id=1060771425 node_paths=PackedStringArray("Destination") instance=ExtResource("5_cmtua")]
 position = Vector2(1683, -580)
+script = ExtResource("8_ru06c")
 Destination = NodePath("Marker2D")
+PuzzleScene = ExtResource("9_r6iqq")
 
 [node name="Marker2D" type="Marker2D" parent="Door10" unique_id=1463980946]
 position = Vector2(0, -83)
