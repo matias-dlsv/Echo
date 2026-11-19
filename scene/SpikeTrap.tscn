@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dv07jdqsi444n"]
+
+[ext_resource type="Texture2D" uid="uid://lfc27u304w6x" path="res://SpikeTrap/spike Trap1.png" id="1_0i3gq"]
+[ext_resource type="Script" uid="uid://dox5il8mhsjqb" path="res://scripts/SpikeTrap.cs" id="1_hx4tr"]
+[ext_resource type="Texture2D" uid="uid://dy2ngj35xddbe" path="res://SpikeTrap/spike Trap2.png" id="2_hx4tr"]
+[ext_resource type="Texture2D" uid="uid://dnmjb27moe007" path="res://SpikeTrap/spike Trap3.png" id="3_3x2jb"]
+[ext_resource type="Texture2D" uid="uid://dhasr31wjnnas" path="res://SpikeTrap/spike Trap4.png" id="4_uayvw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b8f2p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0i3gq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hx4tr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3x2jb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_uayvw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3x2jb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hx4tr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_0i3gq")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b8f2p"]
+size = Vector2(34, 8)
+
+[node name="SpikeTrap" type="Area2D" unique_id=1223865697]
+script = ExtResource("1_hx4tr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=443684268]
+sprite_frames = SubResource("SpriteFrames_b8f2p")
+autoplay = "default"
+frame_progress = 0.51776344
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=258283763]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_b8f2p")

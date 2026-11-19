@@ -7,6 +7,10 @@ public partial class LevelController : Node
 	[Export] public bool IsFinalLevel = false;
 	[Export] public float MessageDuration = 4.0f;
 
+	// Mensaje inicial personalizado para cada nivel
+	[Export(PropertyHint.MultilineText)]
+	public string WelcomeDescription = "";
+
 	private CanvasLayer _levelUI;
 	private Control _messageContainer;
 	private Label _titleLabel;
@@ -44,9 +48,16 @@ public partial class LevelController : Node
 	{
 		_keysLabel.Text = $"Encuentra las {RequiredKeys} llaves";
 
-		_descriptionLabel.Text = IsFinalLevel
-			? "Reúne todas las llaves para poder escapar."
-			: "Reúne todas las llaves para avanzar al siguiente nivel.";
+		if (!string.IsNullOrWhiteSpace(WelcomeDescription))
+		{
+			_descriptionLabel.Text = WelcomeDescription;
+		}
+		else
+		{
+			_descriptionLabel.Text = IsFinalLevel
+				? "Reúne todas las llaves para poder escapar."
+				: "Reúne todas las llaves para avanzar al siguiente nivel.";
+		}
 
 		ShowCurrentMessage();
 	}

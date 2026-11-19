@@ -13,6 +13,7 @@
 [ext_resource type="FontFile" uid="uid://csh4ji5risjar" path="res://font/PressStart2P-Regular.ttf" id="10_wscrc"]
 [ext_resource type="Script" uid="uid://xe5ynmby5bll" path="res://scripts/EchoCounter.cs" id="12_mswub"]
 [ext_resource type="Script" uid="uid://cs3ts5byaqa0c" path="res://scripts/LevelController.cs" id="13_mswub"]
+[ext_resource type="PackedScene" uid="uid://dv07jdqsi444n" path="res://scene/SpikeTrap.tscn" id="14_hybxs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_272bh"]
 texture = ExtResource("2_p1hux")
@@ -612,7 +613,7 @@ position = Vector2(1174.0001, 249.99998)
 rotation = 1.6146477
 
 [node name="KeyPickup" parent="." unique_id=1127419612 instance=ExtResource("7_p1hux")]
-position = Vector2(553, -750)
+position = Vector2(256, -1024)
 
 [node name="Door2" parent="." unique_id=1702573531 node_paths=PackedStringArray("Destination") instance=ExtResource("5_tqoya")]
 position = Vector2(1027, -1120)
@@ -679,25 +680,25 @@ texture_scale = 10.0
 position = Vector2(680, -293)
 
 [node name="Dog11" parent="." unique_id=717304065 instance=ExtResource("4_b5f6u")]
-position = Vector2(685, -447)
+position = Vector2(832, -488)
 
 [node name="Dog12" parent="." unique_id=2096911093 instance=ExtResource("4_b5f6u")]
-position = Vector2(697, -619)
+position = Vector2(904, -640)
 
 [node name="Dog13" parent="." unique_id=809763318 instance=ExtResource("4_b5f6u")]
-position = Vector2(694, -761)
+position = Vector2(448, -1160)
 
 [node name="Dog14" parent="." unique_id=1594064235 instance=ExtResource("4_b5f6u")]
 position = Vector2(418, -311)
 
 [node name="Dog15" parent="." unique_id=1705391622 instance=ExtResource("4_b5f6u")]
-position = Vector2(401, -474)
+position = Vector2(200, -496)
 
 [node name="Dog16" parent="." unique_id=379308914 instance=ExtResource("4_b5f6u")]
-position = Vector2(401, -650)
+position = Vector2(608, -872)
 
 [node name="Dog17" parent="." unique_id=1169725754 instance=ExtResource("4_b5f6u")]
-position = Vector2(388, -811)
+position = Vector2(192, -832)
 
 [node name="Dog18" parent="." unique_id=1759669631 instance=ExtResource("4_b5f6u")]
 position = Vector2(935, -1039)
@@ -769,16 +770,18 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="ObjectivePanel" type="PanelContainer" parent="LevelUI/CenterContainer" unique_id=2077042920]
+custom_minimum_size = Vector2(520, 160)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_cbejv")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LevelUI/CenterContainer/ObjectivePanel" unique_id=1090850557]
 layout_mode = 2
+theme_override_constants/separation = 14
 
 [node name="TitleLabel" type="Label" parent="LevelUI/CenterContainer/ObjectivePanel/VBoxContainer" unique_id=54419394]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("10_wscrc")
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 35
 text = "UNA NUEVA ZONA"
 horizontal_alignment = 1
 
@@ -786,7 +789,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9098039, 0.78039217, 0.4862745, 1)
 theme_override_fonts/font = ExtResource("10_wscrc")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 22
 text = "Encuentra las 2 llaves"
 horizontal_alignment = 1
 
@@ -795,10 +798,32 @@ custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.77254903, 0.79607844, 0.827451, 1)
 theme_override_fonts/font = ExtResource("10_wscrc")
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 16
 text = "Reúne todas las llaves para avanzar al siguiente nivel."
 horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="LevelController" type="Node" parent="." unique_id=1639612591]
 script = ExtResource("13_mswub")
+MessageDuration = 5.0
+WelcomeDescription = "Ten cuidado con los monstruos y las trampas ocultas. Utiliza ECHO para descubrir el camino y avanzar con seguridad."
+
+[node name="SpikeTrap" parent="." unique_id=1223865697 instance=ExtResource("14_hybxs")]
+position = Vector2(288.00003, -600)
+scale = Vector2(1.4, 1.4)
+
+[node name="SpikeTrap2" parent="." unique_id=962017013 instance=ExtResource("14_hybxs")]
+position = Vector2(672, -672)
+scale = Vector2(1.4, 1.4)
+
+[node name="SpikeTrap3" parent="." unique_id=2122333408 instance=ExtResource("14_hybxs")]
+position = Vector2(480, -416)
+scale = Vector2(1.4, 1.4)
+
+[node name="SpikeTrap4" parent="." unique_id=1052211301 instance=ExtResource("14_hybxs")]
+position = Vector2(480, -864)
+scale = Vector2(1.4, 1.4)
+
+[node name="SpikeTrap5" parent="." unique_id=1348631728 instance=ExtResource("14_hybxs")]
+position = Vector2(672, -1184)
+scale = Vector2(1.4, 1.4)
