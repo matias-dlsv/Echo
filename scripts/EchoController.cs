@@ -4,6 +4,8 @@ using Godot;
 // Agranda la luz en 3 niveles y decide cuál de ellos hace ruido (el que oye el perro).
 public partial class EchoController : PointLight2D
 {
+	[Signal]
+	public delegate void EchoActivatedEventHandler(Vector2 origin, float radius);
 	[Export] public float[] LightBoostMultipliers = { 1.5f, 2.5f, 4.0f };
 	[Export] public float BoostDuration = 1.0f;
 	[Export] public float TransitionTime = 0.15f;
@@ -40,6 +42,8 @@ public partial class EchoController : PointLight2D
 		IsEchoLoud = loud;
 
 		float target = _baseScale * LightBoostMultipliers[_chargeIndex];
+		float echoRadius = target * LightRadiusPerScale;
+		EmitSignal(SignalName.EchoActivated, GlobalPosition, echoRadius);
 
 		_tween = CreateTween();
 		_tween.TweenProperty(this, "texture_scale", target, TransitionTime);

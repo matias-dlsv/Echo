@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dybtnbya1x8tb"]
+
+[ext_resource type="Texture2D" uid="uid://56o1fbb7u07" path="res://sprites/runes/rune_eye_carved.png" id="1_4m0c3"]
+[ext_resource type="Script" uid="uid://b6jufyqirt4x4" path="res://scripts/RuneTile.cs" id="1_i334v"]
+[ext_resource type="Texture2D" uid="uid://bgerhmaygvmim" path="res://sprites/runes/rune_eye_glow.png" id="3_6wix3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b8f2p"]
+size = Vector2(30, 31)
+
+[node name="RuneTile" type="Area2D" unique_id=1654943674]
+script = ExtResource("1_i334v")
+CarvedTexture = ExtResource("1_4m0c3")
+GlowTexture = ExtResource("3_6wix3")
+
+[node name="RuneSprite" type="Sprite2D" parent="." unique_id=1495663458]
+position = Vector2(-1, 1)
+texture = ExtResource("1_4m0c3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1749728600]
+position = Vector2(-1, 0.5)
+shape = SubResource("RectangleShape2D_b8f2p")
