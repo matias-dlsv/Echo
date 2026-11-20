@@ -7,6 +7,8 @@ public partial class RuneDoor : Area2D
 
 	[Export]
 	public PackedScene PuzzleScene;
+	[Export]
+	public string[] CorrectSequence = new string[3];
 
 	private Player _player;
 	private RunePuzzle _puzzle;
@@ -66,6 +68,7 @@ public partial class RuneDoor : Area2D
 		if (_puzzle == null)
 		{
 			_puzzle = PuzzleScene.Instantiate<RunePuzzle>();
+			_puzzle.CorrectSequence = (string[])CorrectSequence.Clone();
 
 			GetTree().CurrentScene.AddChild(_puzzle);
 

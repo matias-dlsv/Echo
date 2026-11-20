@@ -11,6 +11,11 @@ public partial class RunePuzzle : CanvasLayer
 	[Signal]
 	public delegate void PuzzleClosedEventHandler();
 
+	// Combinación configurable desde Godot o desde Crystal/RuneDoor.
+	// No hay una combinación ganadora fija.
+	[Export]
+	public string[] CorrectSequence = new string[3];
+
 	private readonly TextureRect[] _slots = new TextureRect[3];
 	private readonly string[] _selectedRunes = new string[3];
 	private readonly Dictionary<string, Texture2D> _textures = new();
@@ -20,13 +25,6 @@ public partial class RunePuzzle : CanvasLayer
 	private Label _instructionLabel;
 
 	private bool _solved = false;
-
-	private static readonly string[] CorrectSequence =
-	{
-		"eye",
-		"chain",
-        "nature"
-	};
 
 	public bool IsSolved => _solved;
 
@@ -54,7 +52,9 @@ public partial class RunePuzzle : CanvasLayer
 		{
 			int index = i;
 
-			Panel panel = slotsContainer.GetNode<Panel>($"Slot{i + 1}");
+			Panel panel = slotsContainer.GetNode<Panel>(
+				$"Slot{i + 1}"
+			);
 
 			var icon = new TextureRect
 			{
@@ -64,7 +64,9 @@ public partial class RunePuzzle : CanvasLayer
 			};
 
 			panel.AddChild(icon);
-			icon.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect);
+			icon.SetAnchorsAndOffsetsPreset(
+				Control.LayoutPreset.FullRect
+			);
 
 			_slots[i] = icon;
 
@@ -179,13 +181,8 @@ public partial class RunePuzzle : CanvasLayer
 
 		string id = data.AsString();
 
-		// Evitar que una misma runa ocupe dos espacios.
-		for (int i = 0; i < 3; i++)
-		{
-			if (i != index && _selectedRunes[i] == id)
-				_selectedRunes[i] = null;
-		}
-
+		// Permitimos repetir una runa en varios espacios.
+		// Ejemplo: ray, ray, ray.
 		_selectedRunes[index] = id;
 
 		_instructionLabel.Text =
@@ -211,14 +208,50 @@ public partial class RunePuzzle : CanvasLayer
 			Array.Exists(_selectedRunes, string.IsNullOrEmpty);
 	}
 
-	
 	private async void CheckSequence()
 	{
+		// Verificar que se configuraron exactamente tres runas.
+		if (CorrectSequence == null || CorrectSequence.Length != 3)
+		{
+			GD.PushError(
+                "RunePuzzle: debes configurar exactamente 3 runas ganadoras."
+			);
+
+			_instructionLabel.Text =
+				"Error: combinación no configurada.";
+
+			return;
+		}
+
+		// Verificar que las tres runas tengan nombres válidos.
+		for (int i = 0; i < 3; i++)
+		{
+			string rune = CorrectSequence[i]?.Trim().ToLowerInvariant();
+
+			if (string.IsNullOrEmpty(rune) || !_textures.ContainsKey(rune))
+			{
+				GD.PushError(
+					$"RunePuzzle: la runa ganadora '{CorrectSequence[i]}' " +
+                    "no existe entre las runas disponibles."
+				);
+
+				_instructionLabel.Text =
+					"Error: revisa la combinación configurada.";
+
+				return;
+			}
+		}
+
+		// Comprobar la combinación seleccionada.
 		bool correct = true;
 
 		for (int i = 0; i < 3; i++)
 		{
-			if (_selectedRunes[i] != CorrectSequence[i])
+			if (!string.Equals(
+				_selectedRunes[i],
+				CorrectSequence[i]?.Trim(),
+				StringComparison.OrdinalIgnoreCase
+			))
 			{
 				correct = false;
 				break;
@@ -229,31 +262,33 @@ public partial class RunePuzzle : CanvasLayer
 		{
 			_instructionLabel.Text =
 				"Secuencia incorrecta. Intenta nuevamente.";
+
 			return;
 		}
 
 		_solved = true;
+
 		_instructionLabel.Text = "¡EL SELLO HA SIDO ROTO!";
 
 		UpdateSlots();
 
-		// Avisar a Door10 que el puzle está resuelto.
+		// Notificar al objeto que abrió el puzle:
+		// RuneDoor desbloquea la puerta.
+		// Crystal enciende su luz.
 		EmitSignal(SignalName.PuzzleSolved);
 
-		// Esperar 1,5 segundos para mostrar el resultado.
+		// Mostrar el mensaje antes de cerrar.
 		await ToSignal(
 			GetTree().CreateTimer(1.5, true),
 			SceneTreeTimer.SignalName.Timeout
 		);
 
-		// Cerrar el popup y reanudar el juego.
 		ClosePuzzle();
 	}
 
-
 	private void ClosePuzzle()
 	{
-		// No borramos _selectedRunes: se conserva el progreso.
+		// Conservamos la selección si el jugador sale.
 		EmitSignal(SignalName.PuzzleClosed);
 	}
 }

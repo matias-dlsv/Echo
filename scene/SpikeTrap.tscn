@@ -36,7 +36,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b8f2p"]
-size = Vector2(34, 8)
+size = Vector2(34, 12)
 
 [node name="SpikeTrap" type="Area2D" unique_id=1223865697]
 script = ExtResource("1_hx4tr")
@@ -47,5 +47,5 @@ autoplay = "default"
 frame_progress = 0.51776344
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=258283763]
-position = Vector2(0, 16)
+position = Vector2(0, 14)
 shape = SubResource("RectangleShape2D_b8f2p")

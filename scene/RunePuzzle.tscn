@@ -300,3 +300,10 @@ theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_8r7bb")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bmmfw")
 text = "SALIR"
+
+[node name="HintLabel" type="Label" parent="PuzzlePanel/ContentMargin/MainVBox" unique_id=1495092849]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72156864, 0.6901961, 0.76862746, 1)
+theme_override_font_sizes/font_size = 13
+text = "¿No sabes qué runas elegir? Observa el suelo usando ECHO"
+horizontal_alignment = 1

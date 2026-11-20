@@ -16,6 +16,8 @@ public partial class LevelController : Node
 	private Label _titleLabel;
 	private Label _keysLabel;
 	private Label _descriptionLabel;
+	private bool _crystalHintShown = false;
+	public bool CrystalHintShown => _crystalHintShown;
 
 	private Tween _messageTween;
 
@@ -44,23 +46,45 @@ public partial class LevelController : Node
 		CallDeferred(nameof(ShowWelcome));
 	}
 
+	
 	private void ShowWelcome()
 	{
-		_keysLabel.Text = $"Encuentra las {RequiredKeys} llaves";
-
-		if (!string.IsNullOrWhiteSpace(WelcomeDescription))
+		if (IsFinalLevel)
 		{
-			_descriptionLabel.Text = WelcomeDescription;
+			_titleLabel.Text = "EL ÚLTIMO ECO";
+			_keysLabel.Text = "DESPIERTA LOS TRES CRISTALES";
+
+			_descriptionLabel.Text =
+				"Tres cristales mantienen sellado el camino hacia la llave. " +
+				"Descubre sus runas, despierta su poder y consigue la llave " +
+				"para escapar del templo.";
 		}
 		else
 		{
-			_descriptionLabel.Text = IsFinalLevel
-				? "Reúne todas las llaves para poder escapar."
-				: "Reúne todas las llaves para avanzar al siguiente nivel.";
+			_keysLabel.Text = $"Encuentra las {RequiredKeys} llaves";
+
+			_descriptionLabel.Text =
+				!string.IsNullOrWhiteSpace(WelcomeDescription)
+					? WelcomeDescription
+					: "Reúne todas las llaves para avanzar al siguiente nivel.";
 		}
 
 		ShowCurrentMessage();
 	}
+	public void ShowFirstCrystalHint()
+	{
+		if (_crystalHintShown)
+			return;
+
+		_crystalHintShown = true;
+
+		ShowMessage(
+			"EL SECRETO DE LAS RUNAS",
+			"MIS RUNAS COMPARTEN MI COLOR",
+	        "Tres runas despiertan mi poder. Busca las que comparten mi color y colócalas en el orden correcto."
+		);
+	}
+
 
 	public void ShowMessage(string title, string subtitle, string description)
 	{
